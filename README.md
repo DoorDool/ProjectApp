@@ -7,9 +7,13 @@ In this app you can pick a date for a holiday or something like that.
 And there is an option to fill in what you have payed an how many. So this app calculate which friend has to pay to who.
 
 So there must be a screen for:
+
   -login
+  
   -register
+  
   -date saver
+  
   -pay
   
 Login screen:
