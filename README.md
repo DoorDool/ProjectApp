@@ -10,15 +10,18 @@ Ook is het lastig om telkens met afspraken/uitjes te vragen welke data iedereen 
 Een app die uitrekend wie aan wie moet betalen binnen een vriendengroep of familie en waarbij je een datum kan prikken voor een afspraak/uitje.
 
 ## Minimale opties:
--	Een account waarmee je jezelf kan toevoegen aan vriendengroepen en andere kan toevoegen
+-	Een scherm om jezelf te registreren
 -	Een scherm met de groep(en) waar je in zit en een optie om een nieuwe groep toe te voegen
--	Als je naar datumprikker gaat een lijst met afspraken/uitjes als je die heb, een optie om een nieuw uitje/afspraak toe te voegen
--	Per afspraak de beschikbaarheid weergeven die mensen opgegeven hebben. K
--	Een manier om je beschikbaarheid op te geven
--	Bij betalen weergeven de lijst met betalingen als die er zijn, een optie om een nieuwe betaling toe te voegen
--	Bij een betaling de mogelijkheid om op te geven hoeveel je betaald heb met slot dat je het niet meer op kan geven
--	Bij een betaling uitrekenen wie aan wie hoeveel moet betalen
--	Aangeven dat je betaald heb, als iedereen betaald heeft verwijderen
+- Andere moeten jou toevoegen aan een bestaande groep
+-	Per groep de kan je kiezen uit drie opties: WieBetaaldWie, datumprikker en deelnemers
+- Bij WieBetaaldWie zie je alle groepen betalingen
+- Per groep betaling zie je een overzicht van alle betalingen en kan je een betaling toevoegen
+- Ook kan je het op slot zetten. Dan kunnen er geen betalingen meer toegevoegd worden en kan alles berekend worden
+- Bij de scherm betalingen zie je wie aan wie moet betalen, dit scherm kan alleen als het op slot is
+- Bij datumprikker zie je al je afspraken
+- Je kan ook een afspraak toevoegen
+- Daarnaast kan je per afspraak bekijken wat de beste optie is en je beschikbaarheid opgeven
+- Bij deelnemers zie je alle deelnemers en kan je nog een deelnemer toevoegen aan de groep
 
 ## Extra opties:
 -	Gezamelijke agenda voor verjaardagen enz.
