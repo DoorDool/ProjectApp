@@ -11,7 +11,7 @@ Een app die uitrekend wie aan wie moet betalen binnen een vriendengroep of famil
 
 ## Minimale opties:
 -	Een account waarmee je jezelf kan toevoegen aan vriendengroepen en andere kan toevoegen
--	Een scherm met de groep(en) waar je in zit
+-	Een scherm met de groep(en) waar je in zit en een optie om een nieuwe groep toe te voegen
 -	Als je naar datumprikker gaat een lijst met afspraken/uitjes als je die heb, een optie om een nieuw uitje/afspraak toe te voegen
 -	Per afspraak de beschikbaarheid weergeven die mensen opgegeven hebben. K
 -	Een manier om je beschikbaarheid op te geven
