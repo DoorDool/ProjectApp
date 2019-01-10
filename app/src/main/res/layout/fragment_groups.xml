@@ -18,7 +18,7 @@
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton3"
+        android:id="@+id/add_group_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="false"
@@ -37,7 +37,6 @@
         android:cropToPadding="false"
         android:duplicateParentState="false"
         android:foregroundGravity="center|fill"
-        android:onClick="Click_on_makegroup"
-        app:srcCompat="@drawable/plus2" />
+        app:srcCompat="@drawable/plus" />
 
 </RelativeLayout>

@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:clickable="true"
-                app:srcCompat="@drawable/plus2" />
+                app:srcCompat="@drawable/plus" />
 
         </LinearLayout>
 

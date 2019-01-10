@@ -16,11 +16,11 @@
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/add_expenses_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:clickable="true"
-        app:srcCompat="@drawable/plus2" />
+        app:srcCompat="@drawable/plus" />
 </RelativeLayout>
