@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_groups"
+        android:icon="@drawable/ic_group"
+        android:title="mijn groepen" />
+
+    <item
+        android:id="@+id/navigation_categories"
+        android:icon="@drawable/ic_categories"
+        android:title="categoriën" />
+
+    <item
+        android:id="@+id/navigation_expenses"
+        android:icon="@drawable/onkosten"
+        android:title="uitgaven" />
+
+    <item
+        android:id="@+id/navigation_payments"
+        android:icon="@drawable/betalingen"
+        android:title="betalingen" />
+
+
+    <item
+        android:id="@+id/navigation_details"
+        android:icon="@drawable/ic_person_add"
+        android:title="deelnemer toevoegen" />
+
+
+
+</menu>
