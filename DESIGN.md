@@ -8,7 +8,7 @@ Dorinda van den Dool
 
 ## Schema's
 
-![img](doc/Design_schema's.png)
+![img](doc/Design_schema's_2.png)
 
 ## Databases
 
