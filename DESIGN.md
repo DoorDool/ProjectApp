@@ -4,7 +4,7 @@ Dorinda van den Dool
 
 ## Schermen
 
-![img](doc/Design_screens.png)
+![img](doc/Design_screens_2.png)
 
 ## Schema's
 
