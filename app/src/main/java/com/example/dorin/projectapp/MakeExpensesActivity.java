@@ -14,7 +14,7 @@ public class MakeExpensesActivity extends AppCompatActivity {
     }
 
     public void Click_on_make(View v) {
-        Intent intent = new Intent(MakeExpensesActivity.this, menuActivity.class);
+        Intent intent = new Intent(MakeExpensesActivity.this, MenuActivity.class);
         startActivity(intent);
     }
 }

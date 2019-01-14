@@ -14,7 +14,7 @@ public class MakeGroupActivity extends AppCompatActivity {
     }
 
     public void Click_on_make(View v) {
-        Intent intent = new Intent(MakeGroupActivity.this, menuActivity.class);
+        Intent intent = new Intent(MakeGroupActivity.this, MenuActivity.class);
         startActivity(intent);
     }
 }

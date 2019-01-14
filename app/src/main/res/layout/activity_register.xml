@@ -15,7 +15,7 @@
         android:textSize="18sp" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/gebruikersnaam_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -23,23 +23,23 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/wachtwoord_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Wachtwoord"
-        android:inputType="textPersonName" />
+        android:inputType="textPassword" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/wachtwoord2_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Wachtwoord (herhaal)"
-        android:inputType="textPersonName" />
+        android:inputType="textPassword" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/rekeningnummer_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
