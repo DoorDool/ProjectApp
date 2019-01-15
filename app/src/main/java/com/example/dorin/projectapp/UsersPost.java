@@ -36,8 +36,8 @@ public class UsersPost implements Response.Listener<String>, Response.ErrorListe
     }
 
     public interface Callback {
-        void gotpostUsers(String highscores);
-        void gotpostUsersError(String message);
+        void gotPostUsers(String users);
+        void gotPostUsersError(String message);
     }
 
     public UsersPost(Context context) {
@@ -58,13 +58,13 @@ public class UsersPost implements Response.Listener<String>, Response.ErrorListe
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        callback_activity.gotpostUsersError(error.getMessage());
+        callback_activity.gotPostUsersError(error.getMessage());
     }
 
     @Override
     public void onResponse(String response) {
         try{
-            callback_activity.gotpostUsers(response);
+            callback_activity.gotPostUsers(response);
         }
         catch(Exception e){
             System.out.println(e.toString());

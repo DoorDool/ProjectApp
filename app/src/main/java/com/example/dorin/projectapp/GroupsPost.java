@@ -18,7 +18,7 @@ public class GroupsPost implements Response.Listener<String>, Response.ErrorList
     Context context;
     GroupsPost.Callback callback_activity;
     String groupsname;
-    String Participator;
+    String participator;
 
     public class PostRequest extends StringRequest {
 
@@ -31,24 +31,24 @@ public class GroupsPost implements Response.Listener<String>, Response.ErrorList
 
             Map<String, String> params = new HashMap<>();
             params.put("groupsname", groupsname);
-            params.put("participator", Participator);
+            params.put("participator", participator);
             return params;
         }
     }
 
     public interface Callback {
-        void gotpostGroups(String groupsname);
-        void gotpostGroupsError(String message);
+        void gotPostGroups(String groups);
+        void gotPostGroupsError(String message);
     }
 
     public GroupsPost(Context context) {
         this.context = context;
     }
 
-    public void postUsers(Context aContext, String groupsname, String Participator) {
+    public void postGroup(Context aContext, String groups_groupsname, String groups_participator) {
         this.context = aContext;
-        groupsname = groupsname;
-        Participator = Participator;
+        groupsname = groups_groupsname;
+        participator = groups_participator;
         String json_url = "https://ide50-doordool.legacy.cs50.io:8080/groups";
         RequestQueue queue = Volley.newRequestQueue(context);
 
@@ -58,13 +58,13 @@ public class GroupsPost implements Response.Listener<String>, Response.ErrorList
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        callback_activity.gotpostGroupsError(error.getMessage());
+        callback_activity.gotPostGroupsError(error.getMessage());
     }
 
     @Override
     public void onResponse(String response) {
         try{
-            callback_activity.gotpostGroups(response);
+            callback_activity.gotPostGroups(response);
         }
         catch(Exception e){
             System.out.println(e.toString());

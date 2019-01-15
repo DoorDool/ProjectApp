@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context=".StartActivity">
+    tools:context=".StartActivity"
+    app:errorEnabled="true">
 
     <TextView
         android:id="@+id/textView"

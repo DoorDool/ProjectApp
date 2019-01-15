@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class StartActivity extends AppCompatActivity implements UsersHelper.Callback {
 
+    public static String username;
     ArrayList<User> UsersList;
 
     @Override
@@ -19,7 +20,6 @@ public class StartActivity extends AppCompatActivity implements UsersHelper.Call
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        Intent intent = getIntent();
         UsersHelper helper = new UsersHelper(this);
         helper.getUser(this);
     }
@@ -46,7 +46,7 @@ public class StartActivity extends AppCompatActivity implements UsersHelper.Call
         EditText username_login = findViewById(R.id.login_username);
         EditText password_login = findViewById(R.id.login_password);
 
-        String username = username_login.getText().toString();
+        username = username_login.getText().toString();
         String password = password_login.getText().toString();
 
         Log.i("users", "1234 user is" + UsersList);
@@ -57,13 +57,18 @@ public class StartActivity extends AppCompatActivity implements UsersHelper.Call
                     Intent intent = new Intent(StartActivity.this, MenuActivity.class);
                     intent.putExtra(username, "username");
                     startActivity(intent);
+                    break;
                 } else {
-                    String message = "Wachtwoord is incorrect";
-                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+                    // test voor fout wachtwoord invoer
+                    password_login.setError("Wachtwoord is incorrect");
+                    //String message = "Wachtwoord is incorrect";
+                    //Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+                    break;
                 }
             } else {
-                String message = "Gebruikersnaam onbekend";
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+                username_login.setError("Gebruikersnaam onbekend");
+                //String message = "Gebruikersnaam onbekend";
+                //Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -72,8 +77,5 @@ public class StartActivity extends AppCompatActivity implements UsersHelper.Call
 
         // To do
         // hash
-        // check of gebruikersnaam bestaat
-        // check of wachtwoord correct is
-        // inloggen
 
 }
