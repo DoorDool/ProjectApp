@@ -12,4 +12,5 @@ These are the rules that i follow:
 10. Space after keywords (if (...))
 
 https://www.w3schools.com/js/js_conventions.asp
+
 https://standardjs.com/
