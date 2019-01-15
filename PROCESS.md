@@ -1,16 +1,23 @@
 ## Dag 1
 
-Ik heb ervoor gekozen om de schermen aan te passen met een bottom navigatie zodat de app meer overzichtelijker wordt voor de gebuiker
+- Eerste gedeelde van de schermen gemaakt.
+- Besloten om bottom navigatie te gebruiken omdat dit overzichtelijker is voor de gebruiker.
 
 ## Dag 2
 
-Ik heb de schermen verder gemaakt. Ik heb alleen de methodes moeten veranderen bij de schermen en de namen.
+- Schermen verder afgemaakt.
+- Navigatie tussen de schermen gemaakt.
 
 ## Dag 3
 
-Nieuw schema gemaakt voor de app overzicht. En een nieuw schema met alle methodes en variabelen voor alle schermen. Plus een filmpje opgezocht over firebase gebruiken in android studio. 
+- Nieuw schema gemaakt voor app overzicht.
+- Hierbij alle methodes en variabelen per scherm aangepast.
+- Filmpje opgezicht voor het gebruik van firebase met android studio.
 
 ## Dag 4
 
-Aanmelden gemaakt. Registreren gemaakt. Zelfde wachtwoorden bij registreren.
-Aanmelden: bestaat gebruikersnaam, klopt wachtwoord
+- Besloten om geen firebase te gebruiken maar rester.py van Martijn, omdat dit werd aanbevolen.
+- Registreren gemaakt, ook dat dit wordt opgeslagen in de database
+- Code of de wachtwoorden wel hetzelfde zijn bij registreren.
+- Aanmelden gemaakt, hierbij wordt gekeken of gebruikersnaam bestaat en het wachtwoord klopt.
+- Begin gemaakt aan het posten van groepen in de database.
