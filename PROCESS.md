@@ -9,3 +9,8 @@ Ik heb de schermen verder gemaakt. Ik heb alleen de methodes moeten veranderen b
 ## Dag 3
 
 Nieuw schema gemaakt voor de app overzicht. En een nieuw schema met alle methodes en variabelen voor alle schermen. Plus een filmpje opgezocht over firebase gebruiken in android studio. 
+
+## Dag 4
+
+Aanmelden gemaakt. Registreren gemaakt. Zelfde wachtwoorden bij registreren.
+Aanmelden: bestaat gebruikersnaam, klopt wachtwoord
