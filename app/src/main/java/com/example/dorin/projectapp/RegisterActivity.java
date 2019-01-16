@@ -63,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity implements UsersHelper.C
                 post.postUsers(RegisterActivity.this, username, password, number);
                 Intent intent = new Intent(RegisterActivity.this, MenuActivity.class);
                 intent.putExtra("username", username);
+                StartActivity.username = username;
                 startActivity(intent);
             }
         }

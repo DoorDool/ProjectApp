@@ -1,7 +1,6 @@
 package com.example.dorin.projectapp;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -41,14 +40,15 @@ public class GroupsHelper  implements Response.Listener<JSONArray>, Response.Err
             for (int i =  0; i < response.length(); i++) {
                 JSONObject object = response.getJSONObject(i);
                 String groupsname = object.getString("groupsname");
+                String participator = object.getString("participator");
 
-                if (GroupsList.size() == 0) {
+                if ((GroupsList.size() == 0) && (participator.equals(StartActivity.username))) {
                     Group newGroup = new Group(groupsname);
                     GroupsList.add(newGroup);
                 }
                 else {
                     for (Group group: GroupsList) {
-                        if (!group.getGroupsname().equals(groupsname)) {
+                        if (!group.getGroupsname().equals(groupsname) && (participator.equals(StartActivity.username))) {
                             Group newGroup = new Group(groupsname);
                             GroupsList.add(newGroup);
                         }

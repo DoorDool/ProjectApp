@@ -23,7 +23,7 @@ public class GroupsFragment extends Fragment implements GroupsHelper.Callback{
     ArrayList<Group> GroupsList;
     View v;
     Context context;
-    public static String groupsname;
+    //public static String groupsname;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle saveInstanceState){
@@ -67,7 +67,10 @@ public class GroupsFragment extends Fragment implements GroupsHelper.Callback{
         public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
             Switch switchGroup = v.findViewById(R.id.switch_groupsname);
             switchGroup.setChecked(true);
-            groupsname = switchGroup.getText().toString();
+            MenuActivity.groupsname = switchGroup.getText().toString();
+
+
+
         }
 
     }

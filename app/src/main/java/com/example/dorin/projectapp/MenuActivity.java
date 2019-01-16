@@ -10,6 +10,8 @@ import android.view.MenuItem;
 
 public class MenuActivity extends AppCompatActivity {
 
+    public static String groupsname;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

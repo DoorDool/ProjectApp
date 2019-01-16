@@ -43,7 +43,7 @@ public class ParticipatorsHelper implements Response.Listener<JSONArray>, Respon
                 String groupsname = object.getString("groupsname");
                 String participator = object.getString("participator");
 
-                Log.i("test", "groupsname from fragment 1234 is " + GroupsFragment.groupsname);
+                Log.i("test", "groupsname from fragment 1234 is " + MenuActivity.groupsname);
 
                 String groupsna = "zxc";
 
