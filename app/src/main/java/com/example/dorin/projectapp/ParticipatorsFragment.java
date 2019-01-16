@@ -1,16 +1,49 @@
 package com.example.dorin.projectapp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.Toast;
 
-public class ParticipatorsFragment extends Fragment {
+import java.util.ArrayList;
+
+public class ParticipatorsFragment extends Fragment implements ParticipatorsHelper.Callback {
+
+    ArrayList<Participator> ParticipatorsList;
+    View v;
+    Context context;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle saveInstanceState){
-        return inflater.inflate(R.layout.fragment_participators, container, false);
+
+        v = inflater.inflate(R.layout.fragment_participators, container, false);
+        context = getContext();
+        ParticipatorsHelper helper = new ParticipatorsHelper(context);
+        helper.getParticipators(this);
+
+        return v;
+
     }
+
+    @Override
+    public void gotParticipators(ArrayList<Participator> ParticipatorsList) {
+        this.ParticipatorsList = ParticipatorsList;
+        ListView participators = v.findViewById(R.id.list_participators);
+        ParticipatorsAdapter adapter = new ParticipatorsAdapter(context, ParticipatorsList);
+        participators.setAdapter(adapter);
+    }
+
+
+    @Override
+    public void gotParticipatorsError(String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    }
+
+
+
 }

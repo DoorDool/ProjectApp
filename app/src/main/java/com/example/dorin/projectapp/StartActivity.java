@@ -3,7 +3,6 @@ package com.example.dorin.projectapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -48,8 +47,6 @@ public class StartActivity extends AppCompatActivity implements UsersHelper.Call
 
         username = username_login.getText().toString();
         String password = password_login.getText().toString();
-
-        Log.i("users", "1234 user is" + UsersList);
 
         for (User user : UsersList) {
             if (user.getUsername().equals(username)) {
