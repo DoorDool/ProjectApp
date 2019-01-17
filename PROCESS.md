@@ -28,3 +28,10 @@
 - Het opslaan van mensen in groepen werkt.
 - Het opslaan van de ingelogde gebruiker zelf in groep werkt.
 - Style guide gemaakt met 10 regels van twee verschillende bronnen.
+
+### Dag 6
+
+- Het laten zien van alle groepen waar de gebruiker inzit werkt.
+- Het laten zien van de deelnemers per groep werkt, alleen moet de variabele groepsnaam nog gemaakt worden. Nu is die nog test.
+- Dus GroupsAdapter, Participator Adapter gemaakt. GroupsHelper, ParticipatorPost en ParticipatorHelper.
+- En nog voor Participator een class.
