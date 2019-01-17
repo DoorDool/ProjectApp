@@ -1,7 +1,7 @@
 package com.example.dorin.projectapp;
 
 import android.content.Context;
-import android.util.Log;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -16,44 +16,43 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ParticipatorsHelper implements Response.Listener<JSONArray>, Response.ErrorListener {
+public class ExpensesHelper implements Response.Listener<JSONArray>, Response.ErrorListener {
 
     private Context context;
-    private ArrayList<Participator> ParticipatorsList;
-    private ParticipatorsHelper.Callback activity;
+    private ArrayList<Expenses> ExpensesList;
+    private ExpensesHelper.Callback activity;
 
     public interface Callback {
-        void gotParticipators(ArrayList<Participator> ParticipatorsList);
-        void gotParticipatorsError(String message);
+        void gotExpenses(ArrayList<Expenses> ExpensesList);
+        void gotExpensesError(String message);
     }
 
     // constructor
-    public ParticipatorsHelper(Context aContext) {
+    public ExpensesHelper(Context aContext) {
         this.context = aContext;
     }
 
     @Override
     public void onResponse(JSONArray response) {
-        ParticipatorsList = new ArrayList<>();
+        ExpensesList = new ArrayList<>();
 
         try {
-            // Get all groups
+            // Get all expenses
             for (int i =  0; i < response.length(); i++) {
                 JSONObject object = response.getJSONObject(i);
+                String username = object.getString("username");
                 String groupsname = object.getString("groupsname");
-                String participator = object.getString("participator");
+                String categorieName = object.getString("categorieName");
+                String toWhat = object.getString("toWhat");
+                String amount = object.getString("amount");
 
-                //Log.i("test", "groupsname from fragment 1234 is " + MenuActivity.groupsname);
-
-                String groupsna = "zxc";
-
-                if (groupsname.equals(groupsna)) {
-                    Log.i ("test", "deelnemer in groep zxc 1234 is " + participator);
-                    Participator participatorNew = new Participator(participator);
-                    ParticipatorsList.add(participatorNew);
+                if ((groupsname.equals("zxc")) && (username.equals("test")) && (categorieName.equals("cat"))) {
+                    Expenses newExpenses = new Expenses(username, groupsname, categorieName, toWhat, amount);
+                    ExpensesList.add(newExpenses);
                 }
+
             }
-            activity.gotParticipators(ParticipatorsList);
+            activity.gotExpenses(ExpensesList);
         }
 
         // Catch errors and give message to user
@@ -66,14 +65,14 @@ public class ParticipatorsHelper implements Response.Listener<JSONArray>, Respon
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        activity.gotParticipatorsError(error.getMessage());
+        activity.gotExpensesError(error.getMessage());
     }
 
     // Get the menu for category
-    public void getParticipators(ParticipatorsHelper.Callback activity) {
+    public void getExpenses(ExpensesHelper.Callback activity) {
         this.activity = activity;
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = "https://ide50-doordool.legacy.cs50.io:8080/groups";
+        String url = "https://ide50-doordool.legacy.cs50.io:8080/expenses";
         // get menu from url with category = inputted category
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, this, this);
         queue.add(jsonArrayRequest);

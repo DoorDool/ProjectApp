@@ -1,7 +1,6 @@
 package com.example.dorin.projectapp;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -16,44 +15,38 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ParticipatorsHelper implements Response.Listener<JSONArray>, Response.ErrorListener {
+public class CategorieHelper implements Response.Listener<JSONArray>, Response.ErrorListener {
 
     private Context context;
-    private ArrayList<Participator> ParticipatorsList;
-    private ParticipatorsHelper.Callback activity;
+    private ArrayList<Categorie> CategorieList;
+    private CategorieHelper.Callback activity;
 
     public interface Callback {
-        void gotParticipators(ArrayList<Participator> ParticipatorsList);
-        void gotParticipatorsError(String message);
+        void gotCategorie(ArrayList<Categorie> CategorieList);
+        void gotCategorieError(String message);
     }
 
     // constructor
-    public ParticipatorsHelper(Context aContext) {
+    public CategorieHelper(Context aContext) {
         this.context = aContext;
     }
 
     @Override
     public void onResponse(JSONArray response) {
-        ParticipatorsList = new ArrayList<>();
+        CategorieList = new ArrayList<>();
 
         try {
-            // Get all groups
+            // Get all categories
             for (int i =  0; i < response.length(); i++) {
                 JSONObject object = response.getJSONObject(i);
                 String groupsname = object.getString("groupsname");
-                String participator = object.getString("participator");
+                String categorieName = object.getString("categorieName");
 
-                //Log.i("test", "groupsname from fragment 1234 is " + MenuActivity.groupsname);
+                Categorie newCategorie = new Categorie(groupsname, categorieName);
+                CategorieList.add(newCategorie);
 
-                String groupsna = "zxc";
-
-                if (groupsname.equals(groupsna)) {
-                    Log.i ("test", "deelnemer in groep zxc 1234 is " + participator);
-                    Participator participatorNew = new Participator(participator);
-                    ParticipatorsList.add(participatorNew);
-                }
             }
-            activity.gotParticipators(ParticipatorsList);
+            activity.gotCategorie(CategorieList);
         }
 
         // Catch errors and give message to user
@@ -66,14 +59,14 @@ public class ParticipatorsHelper implements Response.Listener<JSONArray>, Respon
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        activity.gotParticipatorsError(error.getMessage());
+        activity.gotCategorieError(error.getMessage());
     }
 
     // Get the menu for category
-    public void getParticipators(ParticipatorsHelper.Callback activity) {
+    public void getCategorie(CategorieHelper.Callback activity) {
         this.activity = activity;
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = "https://ide50-doordool.legacy.cs50.io:8080/groups";
+        String url = "https://ide50-doordool.legacy.cs50.io:8080/categories";
         // get menu from url with category = inputted category
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, this, this);
         queue.add(jsonArrayRequest);

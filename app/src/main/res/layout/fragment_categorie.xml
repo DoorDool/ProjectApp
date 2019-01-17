@@ -21,7 +21,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editText10"
+            android:id="@+id/edit_categorieName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -30,7 +30,7 @@
             android:inputType="textPersonName" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton5"
+            android:id="@+id/add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -48,6 +48,7 @@
         android:textSize="18sp" />
 
     <ListView
+        android:id="@+id/list_categories"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

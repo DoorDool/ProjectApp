@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ public class ParticipatorsFragment extends Fragment implements ParticipatorsHelp
         context = getContext();
         ParticipatorsHelper helper = new ParticipatorsHelper(context);
         helper.getParticipators(this);
+        String groupsname = MenuActivity.groupsname;
+        Log.i("test", "groupsname in fragment is 1234 " + groupsname);
 
         return v;
 
