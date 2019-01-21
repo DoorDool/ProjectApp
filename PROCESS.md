@@ -43,3 +43,11 @@
 - Het maken van betalingen
 - Het laten zien van alle betalingen
 
+### Dag 8
+
+- Een manier zoeken om variabelen door te geven via fragmenten van navigatiebar.
+
+### Dag 9
+
+- Pseudocode voor het uitreken van wie, wie moet betalen.
+
