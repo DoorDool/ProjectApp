@@ -35,3 +35,19 @@
 - Het laten zien van de deelnemers per groep werkt, alleen moet de variabele groepsnaam nog gemaakt worden. Nu is die nog test.
 - Dus GroupsAdapter, Participator Adapter gemaakt. GroupsHelper, ParticipatorPost en ParticipatorHelper.
 - En nog voor Participator een class.
+
+### Dag 7
+
+- Het maken van categoriën 
+- Het laten zien van alle categoriën in een groep
+- Het maken van betalingen
+- Het laten zien van alle betalingen
+
+### Dag 8
+
+- Een manier zoeken om variabelen door te geven via fragmenten van navigatiebar.
+
+### Dag 9
+
+- Pseudocode voor het uitreken van wie, wie moet betalen.
+
