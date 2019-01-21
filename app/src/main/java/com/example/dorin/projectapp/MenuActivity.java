@@ -10,7 +10,9 @@ import android.view.MenuItem;
 
 public class MenuActivity extends AppCompatActivity {
 
+    public static String username;
     public static String groupsname;
+    //public static String categoriename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,10 @@ public class MenuActivity extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                     Fragment selectedFragment = null;
+                    //Bundle bundle = new Bundle();
+                    //bundle.putString("username", username);
+                    //bundle.putString("groupsname", groupsname);
+                    //bundle.putString("categoriename", categoriename);
 
                     switch (menuItem.getItemId()) {
                         case R.id.navigation_groups:
@@ -48,6 +54,7 @@ public class MenuActivity extends AppCompatActivity {
                             break;
                     }
 
+                    //selectedFragment.setArguments(bundle);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectedFragment).commit();
 

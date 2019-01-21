@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ public class MakeGroupActivity extends AppCompatActivity implements UsersHelper.
         UsersHelper helper = new UsersHelper(this);
         helper.getUser(this);
 
+        // dit is variabel
         username = StartActivity.username;
     }
 

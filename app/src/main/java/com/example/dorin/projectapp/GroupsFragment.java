@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -23,7 +26,8 @@ public class GroupsFragment extends Fragment implements GroupsHelper.Callback{
     ArrayList<Group> GroupsList;
     View v;
     Context context;
-    //public static String groupsname;
+    //String groupsname;
+    public static String groupsname;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle saveInstanceState){
@@ -38,6 +42,7 @@ public class GroupsFragment extends Fragment implements GroupsHelper.Callback{
                 startActivity(intent);
             }
         });
+        
 
         GroupsHelper helper = new GroupsHelper(context);
         helper.getGroup(this);
@@ -67,16 +72,12 @@ public class GroupsFragment extends Fragment implements GroupsHelper.Callback{
         public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
             Switch switchGroup = v.findViewById(R.id.switch_groupsname);
             switchGroup.setChecked(true);
-            MenuActivity.groupsname = switchGroup.getText().toString();
+            groupsname = switchGroup.getText().toString();
 
-
+            MenuActivity.groupsname = groupsname;
 
         }
 
     }
-
-
-
-
 
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class CategorieFragment extends Fragment implements CategorieHelper.Callb
     EditText input_categorieName;
     ArrayList<Categorie> CategorieList;
     Context context;
+    String groupsname;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle saveInstanceState){
@@ -30,6 +32,9 @@ public class CategorieFragment extends Fragment implements CategorieHelper.Callb
         context = getContext();
         input_categorieName = v.findViewById(R.id.edit_categorieName);
 
+        //Log.i("test", "test username 1234 is " + MenuActivity.username);
+        //Log.i("test", "test groupsname 1234 is " + GroupsFragment.groupsname);
+        //Log.i("test", "test groupsname menu 1234 is " + MenuActivity.groupsname);
         CategorieHelper helper = new CategorieHelper(context);
         helper.getCategorie(this);
 
