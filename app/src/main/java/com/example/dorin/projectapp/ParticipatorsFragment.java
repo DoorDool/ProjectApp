@@ -26,8 +26,10 @@ public class ParticipatorsFragment extends Fragment implements ParticipatorsHelp
         context = getContext();
         ParticipatorsHelper helper = new ParticipatorsHelper(context);
         helper.getParticipators(this);
+
+        // doet het niet
         String groupsname = MenuActivity.groupsname;
-        Log.i("test", "groupsname in fragment is 1234 " + groupsname);
+        //Log.i("test", "groupsname in fragment is 1234 " + groupsname);
 
         return v;
 

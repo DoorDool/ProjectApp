@@ -48,7 +48,7 @@ public class ParticipatorsHelper implements Response.Listener<JSONArray>, Respon
                 String groupsna = "zxc";
 
                 if (groupsname.equals(groupsna)) {
-                    Log.i ("test", "deelnemer in groep zxc 1234 is " + participator);
+                    //Log.i ("test", "deelnemer in groep zxc 1234 is " + participator);
                     Participator participatorNew = new Participator(participator);
                     ParticipatorsList.add(participatorNew);
                 }

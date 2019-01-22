@@ -56,7 +56,7 @@ public class UsersHelper implements Response.Listener<JSONArray>, Response.Error
             Toast.makeText(context, warningMessage, Toast.LENGTH_LONG).show();
         }
 
-        Log.i("users", "abcd na json" + UsersList);
+        //Log.i("users", "abcd na json" + UsersList);
     }
 
     @Override
