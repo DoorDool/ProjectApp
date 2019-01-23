@@ -51,3 +51,9 @@
 
 - Pseudocode voor het uitreken van wie, wie moet betalen.
 
+### Dag 10
+
+- Code gemaakt voor het opzoeken van iedereen die betaald heeft
+- Code voor opslaan van iedereen die niet betaald heeft
+- Het totale bedrag van alle uitgaven van een groep en categorie
+- Uitgereken hoeveel dit per persoon moet zijn
