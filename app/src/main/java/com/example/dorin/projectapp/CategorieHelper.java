@@ -41,10 +41,10 @@ public class CategorieHelper implements Response.Listener<JSONArray>, Response.E
                 JSONObject object = response.getJSONObject(i);
                 String groupsname = object.getString("groupsname");
                 String categorieName = object.getString("categorieName");
-
-                Categorie newCategorie = new Categorie(groupsname, categorieName);
-                CategorieList.add(newCategorie);
-
+                if (groupsname.equals(StartActivity.groupsname)) {
+                    Categorie newCategorie = new Categorie(groupsname, categorieName);
+                    CategorieList.add(newCategorie);
+                }
             }
             activity.gotCategorie(CategorieList);
         }

@@ -29,6 +29,9 @@ public class GroupsAdapter extends ArrayAdapter<Group> {
         Group group = getItem(position);
         Switch name = convertView.findViewById(R.id.switch_groupsname);
         name.setText(group.getGroupsname());
+        if (StartActivity.groupsname != null && StartActivity.groupsname.equals(group.getGroupsname())) {
+            name.setChecked(true);
+        }
 
         return convertView;
     }

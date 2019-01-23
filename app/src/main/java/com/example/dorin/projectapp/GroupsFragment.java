@@ -1,6 +1,7 @@
 package com.example.dorin.projectapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -21,9 +22,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class GroupsFragment extends Fragment implements GroupsHelper.Callback{
+public class GroupsFragment extends Fragment implements GroupsHelper.Callback {
 
     ArrayList<Group> GroupsList;
+    ListView groups;
     View v;
     Context context;
     //String groupsname;
@@ -42,10 +44,13 @@ public class GroupsFragment extends Fragment implements GroupsHelper.Callback{
                 startActivity(intent);
             }
         });
-        
 
         GroupsHelper helper = new GroupsHelper(context);
         helper.getGroup(this);
+
+        Log.i("test", "get here 1234");
+        groups = v.findViewById(R.id.listview_groups);
+        groups.setOnItemClickListener(new listClickListener());
 
         return v;
     }
@@ -54,10 +59,8 @@ public class GroupsFragment extends Fragment implements GroupsHelper.Callback{
     @Override
     public void gotGroups(ArrayList<Group> GroupsList) {
         this.GroupsList = GroupsList;
-        ListView groups = v.findViewById(R.id.listview_groups);
         GroupsAdapter adapter = new GroupsAdapter(context, GroupsList);
         groups.setAdapter(adapter);
-        groups.setOnItemClickListener(new listClickListener());
     }
 
 
@@ -66,18 +69,13 @@ public class GroupsFragment extends Fragment implements GroupsHelper.Callback{
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
+
     private class listClickListener implements AdapterView.OnItemClickListener  {
-
         @Override
-        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-            Switch switchGroup = v.findViewById(R.id.switch_groupsname);
-            switchGroup.setChecked(true);
-            groupsname = switchGroup.getText().toString();
-
-            MenuActivity.groupsname = groupsname;
-
+        public void onItemClick(AdapterView<?> parent, View v, int position, long l) {
+            Group switchGroup = (Group) parent.getItemAtPosition(position);
+            StartActivity.groupsname = switchGroup.getGroupsname();
         }
-
     }
 
 }

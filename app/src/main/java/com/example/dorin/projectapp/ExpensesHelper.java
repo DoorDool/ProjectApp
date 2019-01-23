@@ -46,7 +46,7 @@ public class ExpensesHelper implements Response.Listener<JSONArray>, Response.Er
                 String toWhat = object.getString("toWhat");
                 String amount = object.getString("amount");
 
-                if ((groupsname.equals("zxc")) && (username.equals("test")) && (categorieName.equals("cat"))) {
+                if ((groupsname.equals(StartActivity.groupsname)) && (username.equals(StartActivity.username)) && (categorieName.equals(StartActivity.categoriename))) {
                     Expenses newExpenses = new Expenses(username, groupsname, categorieName, toWhat, amount);
                     ExpensesList.add(newExpenses);
                 }

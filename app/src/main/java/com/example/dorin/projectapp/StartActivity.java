@@ -12,6 +12,8 @@ import java.util.ArrayList;
 public class StartActivity extends AppCompatActivity implements UsersHelper.Callback {
 
     public static String username;
+    public static String groupsname;
+    public static String categoriename;
     ArrayList<User> UsersList;
 
     @Override

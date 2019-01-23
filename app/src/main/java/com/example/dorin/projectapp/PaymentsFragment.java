@@ -80,7 +80,11 @@ public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Ca
         // order list of expenses
         ArrayList<String> expensUsersList = new ArrayList<>();
         ArrayList<Float> expensAmountList = new ArrayList<>();
+        // people who have to pay to others
+        ArrayList<String> notPayers = new ArrayList<>();
         ArrayList<String> payers = new ArrayList<>();
+        ArrayList<Integer> much = new ArrayList<>();
+        ArrayList<String> who = new ArrayList<>();
 
         // for all expenses in list
         for (Expenses expenses: ExpensesList) {
@@ -103,7 +107,21 @@ public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Ca
         // all participators who don't have pay saved in a list
         for (Participator participator: ParticipatorsList) {
             if (!expensUsersList.contains(participator.getParticipator())) {
-                payers.add(participator.getParticipator());
+                notPayers.add(participator.getParticipator());
+            }
+        }
+
+        // iterate over all people who have to pay
+        for (String payer: notPayers) {
+            // iterate over all people who have pay
+            for (String expenser: expensUsersList) {
+                // get index of person who have pay
+                int index = expensUsersList.indexOf(expenser);
+                // if person - cash of payer is bigger or same as cash
+                if (expensAmountList.get(index) - cash >= cash ) {
+                    //
+                    cash = cash;
+                }
             }
         }
 
