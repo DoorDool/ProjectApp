@@ -57,7 +57,7 @@ public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Ca
     @Override
     public void gotExpenses(ArrayList<Expenses> ExpensesList) {
         this.ExpensesList = ExpensesList;
-
+        Log.i("test", "1234 here _________________________________");
         calculate();
     }
 
@@ -69,6 +69,7 @@ public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Ca
 
     public void calculate() {
         countParticipators = ParticipatorsList.size();
+
         for (Expenses expenses: ExpensesList) {
             countExpenses = countExpenses + Float.parseFloat(expenses.getAmount().replaceAll(",", "."));
         }
@@ -83,8 +84,9 @@ public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Ca
         // people who have to pay to others
         ArrayList<String> notPayers = new ArrayList<>();
         ArrayList<String> payers = new ArrayList<>();
-        ArrayList<Integer> much = new ArrayList<>();
-        ArrayList<String> who = new ArrayList<>();
+        ArrayList<Float> much = new ArrayList<>();
+        ArrayList<String> fromWho = new ArrayList<>();
+        ArrayList<String> toWho = new ArrayList<>();
 
         // for all expenses in list
         for (Expenses expenses: ExpensesList) {
@@ -119,20 +121,18 @@ public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Ca
                 int index = expensUsersList.indexOf(expenser);
                 // if person - cash of payer is bigger or same as cash
                 if (expensAmountList.get(index) - cash >= cash ) {
-                    //
-                    cash = cash;
+                    expensAmountList.set(index, expensAmountList.get(index) - cash);
+                    much.add(cash);
+                    fromWho.add(payer);
+                    toWho.add(expensUsersList.get(index));
                 }
             }
         }
 
         // TO DO
-        // bovenste van niet betaalde pakken
-        // die betaald aan bovenste van wel betaalde
-        // dan weer volgende van niet betaalde etc.
-        // tot bovenste van betaalde aan bedrag per persoon zit
-        // dan aan de volgende betalen
+        // als gebruiker kleiner wordt dan dat bedrag, maar wel een gedeelte, dan aan twee mensen betalen
+        // als van de betalers het bedrag wat overblijft nog te veel is, dan betalers aan elkaar betalen
 
-        // opletten op betalen aan twee personen
         // de gebruiker die ingelogd is veranderen in u (dit moet ook nog bij deelnemersfragment)
     }
 

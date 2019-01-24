@@ -43,12 +43,8 @@ public class ParticipatorsHelper implements Response.Listener<JSONArray>, Respon
                 String groupsname = object.getString("groupsname");
                 String participator = object.getString("participator");
 
-                //Log.i("test", "groupsname from fragment 1234 is " + MenuActivity.groupsname);
-
-                String groupsna = "zxc";
-
-                if (groupsname.equals(groupsna)) {
-                    //Log.i ("test", "deelnemer in groep zxc 1234 is " + participator);
+                if (groupsname.equals(StartActivity.groupsname)) {
+                    Log.i("test", "participatorHelper groupsname is zxcv " + StartActivity.groupsname);
                     Participator participatorNew = new Participator(participator);
                     ParticipatorsList.add(participatorNew);
                 }
