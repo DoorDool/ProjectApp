@@ -30,7 +30,14 @@ public class ParticipatorsAdapter extends ArrayAdapter<Participator> {
         Participator participator = getItem(position);
         // Get and set textViews and imageViews from item
         TextView text = convertView.findViewById(R.id.item_partname);
-        text.setText(participator.getParticipator());
+
+        if (participator.getParticipator().equals(StartActivity.username)) {
+            text.setText("u");
+        }
+        else {
+            text.setText(participator.getParticipator());
+        }
+
         return convertView;
     }
 }

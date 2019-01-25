@@ -32,10 +32,21 @@ public class PaymentsAdapter extends ArrayAdapter<Payment> {
         TextView textMuch = convertView.findViewById(R.id.textMuch);
         TextView textToWho = convertView.findViewById(R.id.textToWho);
 
-        textFromWho.setText(payment.getFromWho());
+        if (payment.getFromWho().equals(StartActivity.username)) {
+            textFromWho.setText("U");
+        }
+        else {
+            textFromWho.setText(payment.getFromWho());
+        }
         String much = String.format("%.3g%n", payment.getMuch());
         textMuch.setText("€ " + much);
-        textToWho.setText(payment.getToWho());
+
+        if (payment.getToWho().equals(StartActivity.username)) {
+            textToWho.setText("u");
+        }
+        else {
+            textToWho.setText(payment.getToWho());
+        }
 
         return convertView;
     }

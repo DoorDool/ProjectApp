@@ -32,7 +32,12 @@ public class ExpensesAdapter extends ArrayAdapter<Expenses> {
         TextView textToWhat = convertView.findViewById(R.id.textView_toWhat);
         TextView textAmount = convertView.findViewById(R.id.textView_amount);
 
-        textUsername.setText(expenses.getUsername());
+        if (expenses.getUsername().equals(StartActivity.username)) {
+            textUsername.setText("u");
+        }
+        else {
+            textUsername.setText(expenses.getUsername());
+        }
         textToWhat.setText(expenses.getToWhat());
         textAmount.setText("€ " + expenses.getAmount().replaceAll(",", "."));
 

@@ -33,26 +33,25 @@ public class ParticipatorsFragment extends Fragment implements ParticipatorsHelp
 
         FloatingActionButton addParticipatorButton = v.findViewById(R.id.addParticipatorButton);
         addParticipatorButton.setOnClickListener(new View.OnClickListener() {
-            // gebruikersnaam mag niet de gebruiker zijn
+            //gebruikersnaam mag niet de gebruiker zijn
             // gebruikersnaam mag niet al in de groep zitten
-
-            public void onClick(View v) {
+            public void onClick(View view) {
                 EditText participatorText = v.findViewById(R.id.textParticipator);
                 String participator = participatorText.getText().toString();
-                if (participator != null) {
+                if (!participator.equals("")) {
                     Boolean permission = false;
-                    for (User user: UsersList) {
-                        if (participator.equals(user.getUsername()) ) {
+                    //for (User user: UsersList) {
+                        //if (participator.equals(user.getUsername()) ) {
                             permission = true;
                             GroupsPost post = new GroupsPost(context);
                             post.postGroup(context, StartActivity.groupsname, participator);
                             participatorText.setText("");
-                        }
-                    }
-                    if (!permission) {
-                        String message = "Gebruikersnaam bestaat niet";
-                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-                    }
+                        //}
+                    //}
+                    //if (!permission) {
+                        //String message = "Gebruikersnaam bestaat niet";
+                        //Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                    //}
                 }
             }
         });

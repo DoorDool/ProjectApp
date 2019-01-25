@@ -54,7 +54,6 @@ public class GroupsFragment extends Fragment implements GroupsHelper.Callback {
     @Override
     public void gotGroups(ArrayList<Group> GroupsList) {
         this.GroupsList = GroupsList;
-        Toast.makeText(context, "test", Toast.LENGTH_LONG).show();
         GroupsAdapter adapter = new GroupsAdapter(context, GroupsList);
         groups.setAdapter(adapter);
     }

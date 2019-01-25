@@ -37,6 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:clickable="true"
+            android:onClick="Click_on_add_participator"
+            android:clipChildren="false"
             app:srcCompat="@drawable/plus" />
     </LinearLayout>
 
