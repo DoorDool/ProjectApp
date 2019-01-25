@@ -57,3 +57,15 @@
 - Code voor opslaan van iedereen die niet betaald heeft
 - Het totale bedrag van alle uitgaven van een groep en categorie
 - Uitgereken hoeveel dit per persoon moet zijn
+
+### Dag 11
+
+- Het doorgeven van variabelen via fragmenten is gelukt
+- Het switchen van switchboxen is gelukt. Ik heb nu wel ervoor gekozen om na het klikken op een switchbox gelijk door te gaan naar de volgende fragment aangezien dat beter is met programmeren
+- Een begin maken van code voor het betalen uitrekenen
+
+### Dag 12
+
+- Code voor uitrekenen van betalingen verder gemaakt. Nu moet ik alleen nog voor als je aan twee personen moet betalen. En als het bedrag niet uitkomt bij de betalers, dat betalers aan elkaar moeten betalen
+
+
