@@ -72,9 +72,10 @@ public class StartActivity extends AppCompatActivity implements UsersHelper.Call
         }
     }
 
-
-
-        // To do
-        // hash
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+        System.exit(0);
+    }
 
 }

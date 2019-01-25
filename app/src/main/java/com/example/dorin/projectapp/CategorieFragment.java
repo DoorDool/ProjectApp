@@ -66,7 +66,9 @@ public class CategorieFragment extends Fragment implements CategorieHelper.Callb
         public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
             Categorie switchGroup = (Categorie) parent.getItemAtPosition(position);
             StartActivity.categoriename = switchGroup.getCategorieName();
-            Log.i("test", "categoriename 1234 is " + StartActivity.categoriename);
+            // go to ExpensesActivity
+            ((MenuActivity) getActivity()).moveToExpensesFragment();
+
         }
     }
 

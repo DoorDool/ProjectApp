@@ -34,7 +34,7 @@ public class ExpensesAdapter extends ArrayAdapter<Expenses> {
 
         textUsername.setText(expenses.getUsername());
         textToWhat.setText(expenses.getToWhat());
-        textAmount.setText("€ " + expenses.getAmount());
+        textAmount.setText("€ " + expenses.getAmount().replaceAll(",", "."));
 
         return convertView;
     }

@@ -7,17 +7,19 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MenuActivity extends AppCompatActivity {
 
     public static String groupsname;
+    BottomNavigationView bottomNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -43,7 +45,7 @@ public class MenuActivity extends AppCompatActivity {
                         case R.id.navigation_payments:
                             selectedFragment = new PaymentsFragment();
                             break;
-                        case R.id.navigation_details:
+                        case R.id.navigation_participators:
                             selectedFragment = new ParticipatorsFragment();
                             break;
                     }
@@ -55,10 +57,25 @@ public class MenuActivity extends AppCompatActivity {
                 }
             };
 
+    public void moveToCategorieFragment() {
+        Fragment fragment = new CategorieFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                fragment).commit();
+        bottomNav.setSelectedItemId(R.id.navigation_categories);
+    }
+
+    public void moveToExpensesFragment() {
+        Fragment fragment = new ExpensesFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                fragment).commit();
+        bottomNav.setSelectedItemId(R.id.navigation_expenses);
+    }
+
+
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(MenuActivity.this, StartActivity.class);
-        startActivity(intent);
+        finishAffinity();
+        System.exit(0);
     }
 
 }

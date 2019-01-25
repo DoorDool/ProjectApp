@@ -29,6 +29,9 @@ public class CategorieAdapter extends ArrayAdapter<Categorie> {
         Categorie categorie = getItem(position);
         Switch name = convertView.findViewById(R.id.switch_categorieName);
         name.setText(categorie.getCategorieName());
+        if (StartActivity.categoriename != null && StartActivity.categoriename.equals(categorie.getCategorieName())) {
+            name.setChecked(true);
+        }
 
         return convertView;
     }

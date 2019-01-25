@@ -6,28 +6,28 @@
     <item
         android:id="@+id/navigation_groups"
         android:icon="@drawable/ic_group"
-        android:title="mijn groepen" />
+        android:title="Mijn groepen" />
 
     <item
         android:id="@+id/navigation_categories"
         android:icon="@drawable/ic_categories"
-        android:title="categoriën" />
+        android:title="Categoriën" />
 
     <item
         android:id="@+id/navigation_expenses"
         android:icon="@drawable/onkosten"
-        android:title="uitgaven" />
+        android:title="Uitgaven" />
 
     <item
         android:id="@+id/navigation_payments"
         android:icon="@drawable/betalingen"
-        android:title="betalingen" />
+        android:title="Betalingen" />
 
 
     <item
-        android:id="@+id/navigation_details"
+        android:id="@+id/navigation_participators"
         android:icon="@drawable/ic_person_add"
-        android:title="deelnemer toevoegen" />
+        android:title="Toevoegen" />
 
 
 

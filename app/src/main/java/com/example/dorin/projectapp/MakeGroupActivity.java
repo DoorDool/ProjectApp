@@ -48,6 +48,7 @@ public class MakeGroupActivity extends AppCompatActivity implements UsersHelper.
 
         Boolean permission = false;
         for (User user: UsersList) {
+            // mag niet de gebruiker zijn
             if (participator.equals(user.getUsername())) {
                 permission = true;
                 GroupsPost post = new GroupsPost(MakeGroupActivity.this);

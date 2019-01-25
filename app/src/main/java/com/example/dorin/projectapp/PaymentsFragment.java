@@ -84,6 +84,7 @@ public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Ca
         // people who have to pay to others
         ArrayList<String> notPayers = new ArrayList<>();
         ArrayList<String> payers = new ArrayList<>();
+        ArrayList<Payment> payments = new ArrayList<>();
         ArrayList<Float> much = new ArrayList<>();
         ArrayList<String> fromWho = new ArrayList<>();
         ArrayList<String> toWho = new ArrayList<>();
@@ -122,12 +123,19 @@ public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Ca
                 // if person - cash of payer is bigger or same as cash
                 if (expensAmountList.get(index) - cash >= cash ) {
                     expensAmountList.set(index, expensAmountList.get(index) - cash);
-                    much.add(cash);
-                    fromWho.add(payer);
-                    toWho.add(expensUsersList.get(index));
+                    Payment payment = new Payment(cash, payer, expensUsersList.get(index));
+                    payments.add(payment);
+                    //much.add(cash);
+                    //fromWho.add(payer);
+                    //toWho.add(expensUsersList.get(index));
                 }
             }
         }
+
+
+        ListView listView = v.findViewById(R.id.listViewPayments);
+        PaymentsAdapter adapter = new PaymentsAdapter(context, payments);
+        listView.setAdapter(adapter);
 
         // TO DO
         // als gebruiker kleiner wordt dan dat bedrag, maar wel een gedeelte, dan aan twee mensen betalen

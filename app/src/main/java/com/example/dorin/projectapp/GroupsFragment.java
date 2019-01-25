@@ -1,23 +1,18 @@
 package com.example.dorin.projectapp;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -59,6 +54,7 @@ public class GroupsFragment extends Fragment implements GroupsHelper.Callback {
     @Override
     public void gotGroups(ArrayList<Group> GroupsList) {
         this.GroupsList = GroupsList;
+        Toast.makeText(context, "test", Toast.LENGTH_LONG).show();
         GroupsAdapter adapter = new GroupsAdapter(context, GroupsList);
         groups.setAdapter(adapter);
     }
@@ -75,6 +71,8 @@ public class GroupsFragment extends Fragment implements GroupsHelper.Callback {
         public void onItemClick(AdapterView<?> parent, View v, int position, long l) {
             Group switchGroup = (Group) parent.getItemAtPosition(position);
             StartActivity.groupsname = switchGroup.getGroupsname();
+            // go to CategorieActivity
+            ((MenuActivity) getActivity()).moveToCategorieFragment();
         }
     }
 
