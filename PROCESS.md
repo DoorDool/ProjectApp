@@ -68,4 +68,10 @@
 
 - Code voor uitrekenen van betalingen verder gemaakt. Nu moet ik alleen nog voor als je aan twee personen moet betalen. En als het bedrag niet uitkomt bij de betalers, dat betalers aan elkaar moeten betalen
 
+### Dag 13
+
+- Adapter voor betalingen gemaakt
+- Het toevoegen van deelnemer aan een groep gemaakt (nog zonder check)
+- Backpress gemaakt
+- icon van app veranderd
 
