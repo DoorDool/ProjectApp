@@ -23,5 +23,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:clickable="true"
+        android:elevation="0dp"
+        app:elevation="0dp"
         app:srcCompat="@drawable/plus" />
 </RelativeLayout>

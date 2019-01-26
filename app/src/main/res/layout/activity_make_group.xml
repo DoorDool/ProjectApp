@@ -51,11 +51,14 @@
                 android:layout_marginRight="5dp"
                 android:clickable="true"
                 android:onClick="Click_on_plus"
+                android:elevation="0dp"
+                app:elevation="0dp"
                 app:srcCompat="@drawable/plus" />
 
         </LinearLayout>
 
         <ListView
+            android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

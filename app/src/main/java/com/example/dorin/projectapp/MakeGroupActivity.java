@@ -2,19 +2,23 @@ package com.example.dorin.projectapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Telephony;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MakeGroupActivity extends AppCompatActivity implements UsersHelper.Callback {
+public class MakeGroupActivity extends AppCompatActivity implements UsersHelper.Callback, GroupsHelper.Callback, ParticipatorsHelper.Callback {
 
     String username;
     ArrayList<User> UsersList;
+    ArrayList<Group> GroupsList;
+    ArrayList<Participator> ParticipatorsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,10 @@ public class MakeGroupActivity extends AppCompatActivity implements UsersHelper.
 
         UsersHelper helper = new UsersHelper(this);
         helper.getUser(this);
+        GroupsHelper groups = new GroupsHelper(this);
+        groups.getGroup(this);
+        ParticipatorsHelper participators = new ParticipatorsHelper(this);
+        participators.getParticipators(this);
 
         // dit is variabel
         username = StartActivity.username;
@@ -38,6 +46,26 @@ public class MakeGroupActivity extends AppCompatActivity implements UsersHelper.
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void gotGroups(ArrayList<Group> GroupsList) {
+        this.GroupsList = GroupsList;
+    }
+
+    @Override
+    public void gotGroupsError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void gotParticipators(ArrayList<Participator> ParticipatorsList) {
+        this.ParticipatorsList = ParticipatorsList;
+    }
+
+    @Override
+    public void gotParticipatorsError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
     public void Click_on_plus(View v) {
 
         EditText groupsname_input = findViewById(R.id.groupsname_input);
@@ -47,19 +75,48 @@ public class MakeGroupActivity extends AppCompatActivity implements UsersHelper.
         String participator = participators_input.getText().toString();
 
         Boolean permission = false;
+        Boolean groupDouble = false;
+        Boolean inGroup = false;
+        for (Group group: GroupsList) {
+            if (group.getGroupsname().equals(groupsname)) {
+                groupDouble = true;
+            }
+        }
+        for (Participator part: ParticipatorsList ) {
+            if (part.getParticipator().equals(participator)) {
+                inGroup = true;
+            }
+        }
         for (User user: UsersList) {
             // mag niet de gebruiker zijn
-            if (participator.equals(user.getUsername())) {
+            if (participator.equals(user.getUsername()) && !groupDouble && !inGroup) {
                 permission = true;
                 GroupsPost post = new GroupsPost(MakeGroupActivity.this);
                 post.postGroup(MakeGroupActivity.this, groupsname, participator);
                 participators_input.setText("");
             }
         }
-        if (!permission) {
+        if (groupDouble) {
+            String message = "Groepsnaam bestaat al";
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        }
+        else if (inGroup) {
+            String message = "Deelnemer zit al in groep";
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        }
+        else if (!permission) {
             String message = "Gebruikersnaam bestaat niet";
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
+
+        // user zelf toevoegen mag ook niet met plus button
+        // error message van maken
+
+        // dit was een manier om list met toegevoegde user te laten zien maar dat werk niet
+        //ListView listView = findViewById(R.id.listView);
+        //ParticipatorsAdapter adapter = new ParticipatorsAdapter(this, ParticipatorsList);
+        //listView.setAdapter(adapter);
+
     }
 
 
@@ -69,11 +126,21 @@ public class MakeGroupActivity extends AppCompatActivity implements UsersHelper.
         String groupsname = groupsname_input.getText().toString();
         String participator = username;
 
-        GroupsPost post2 = new GroupsPost(MakeGroupActivity.this);
-        post2.postGroup(MakeGroupActivity.this, groupsname, participator);
+        boolean groupDouble = false;
+        for (Group group: GroupsList) {
+            if (group.getGroupsname().equals(groupsname)) {
+                String message = "Groepsnaam bestaat al";
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+                groupDouble = true;
+            }
+        }
+        if (!groupDouble) {
+            GroupsPost post2 = new GroupsPost(MakeGroupActivity.this);
+            post2.postGroup(MakeGroupActivity.this, groupsname, participator);
 
-        Intent intent = new Intent(MakeGroupActivity.this, MenuActivity.class);
-        startActivity(intent);
+            Intent intent = new Intent(MakeGroupActivity.this, MenuActivity.class);
+            startActivity(intent);
+        }
     }
 
 }

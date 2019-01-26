@@ -39,6 +39,8 @@
         android:cropToPadding="false"
         android:duplicateParentState="false"
         android:foregroundGravity="center|fill"
+        android:elevation="0dp"
+        app:elevation="0dp"
         app:srcCompat="@drawable/plus" />
 
 </RelativeLayout>

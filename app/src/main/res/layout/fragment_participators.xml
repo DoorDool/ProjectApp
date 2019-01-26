@@ -39,6 +39,8 @@
             android:clickable="true"
             android:onClick="Click_on_add_participator"
             android:clipChildren="false"
+            android:elevation="0dp"
+            app:elevation="0dp"
             app:srcCompat="@drawable/plus" />
     </LinearLayout>
 

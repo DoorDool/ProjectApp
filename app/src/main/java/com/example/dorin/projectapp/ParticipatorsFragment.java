@@ -30,6 +30,8 @@ public class ParticipatorsFragment extends Fragment implements ParticipatorsHelp
         context = getContext();
         ParticipatorsHelper helper = new ParticipatorsHelper(context);
         helper.getParticipators(this);
+        UsersHelper users = new UsersHelper(context);
+        users.getUser(this);
 
         FloatingActionButton addParticipatorButton = v.findViewById(R.id.addParticipatorButton);
         addParticipatorButton.setOnClickListener(new View.OnClickListener() {
@@ -40,22 +42,36 @@ public class ParticipatorsFragment extends Fragment implements ParticipatorsHelp
                 String participator = participatorText.getText().toString();
                 if (!participator.equals("")) {
                     Boolean permission = false;
-                    //for (User user: UsersList) {
-                        //if (participator.equals(user.getUsername()) ) {
+                    Boolean inGroup = false;
+                    for (Participator part: ParticipatorsList) {
+                        if (participator.equals(part.getParticipator())) {
+                            inGroup = true;
+                        }
+                    }
+                    for (User user: UsersList) {
+                        if (participator.equals(user.getUsername()) && !inGroup) {
                             permission = true;
                             GroupsPost post = new GroupsPost(context);
                             post.postGroup(context, StartActivity.groupsname, participator);
                             participatorText.setText("");
-                        //}
-                    //}
-                    //if (!permission) {
-                        //String message = "Gebruikersnaam bestaat niet";
-                        //Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-                    //}
+                            //ListView participators = v.findViewById(R.id.list_participators);
+                            //ParticipatorsAdapter adapter = new ParticipatorsAdapter(context, ParticipatorsList);
+                            //participators.setAdapter(adapter);
+
+                        }
+                    }
+
+                    if (!permission) {
+                        String message = "Gebruikersnaam bestaat niet";
+                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                    }
+                    else if (inGroup) {
+                        String message = "Deelnemer zit al in groep";
+                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
-
         return v;
 
     }
@@ -78,12 +94,8 @@ public class ParticipatorsFragment extends Fragment implements ParticipatorsHelp
         participators.setAdapter(adapter);
     }
 
-
     @Override
     public void gotParticipatorsError(String message) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
-
-
-
 }
