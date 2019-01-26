@@ -78,3 +78,4 @@
 ### Dag 14
 
 - Check voor toevoegen van deelnemer gemaakt, ook voor als je een nieuwe groep aanmaakt
+- Schaduw van plus buttons weggehaald
