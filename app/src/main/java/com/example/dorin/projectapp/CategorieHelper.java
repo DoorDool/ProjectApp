@@ -41,6 +41,7 @@ public class CategorieHelper implements Response.Listener<JSONArray>, Response.E
                 JSONObject object = response.getJSONObject(i);
                 String groupsname = object.getString("groupsname");
                 String categorieName = object.getString("categorieName");
+                // only get the categories from the group which is active
                 if (groupsname.equals(StartActivity.groupsname)) {
                     Categorie newCategorie = new Categorie(groupsname, categorieName);
                     CategorieList.add(newCategorie);
@@ -62,7 +63,6 @@ public class CategorieHelper implements Response.Listener<JSONArray>, Response.E
         activity.gotCategorieError(error.getMessage());
     }
 
-    // Get the menu for category
     public void getCategorie(CategorieHelper.Callback activity) {
         this.activity = activity;
         RequestQueue queue = Volley.newRequestQueue(context);

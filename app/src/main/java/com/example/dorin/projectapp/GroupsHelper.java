@@ -43,11 +43,10 @@ public class GroupsHelper  implements Response.Listener<JSONArray>, Response.Err
                 String groupsname = object.getString("groupsname");
                 String participator = object.getString("participator");
 
-                // the first group where username is in always add
+                // only get groups where the user is in
                 if (participator.equals(StartActivity.username)) {
                     Group newGroup = new Group(groupsname);
                     GroupsList.add(newGroup);
-                    Log.i("test", "1234 " + groupsname);
                 }
             }
             activity.gotGroups(GroupsList);
@@ -66,7 +65,6 @@ public class GroupsHelper  implements Response.Listener<JSONArray>, Response.Err
         activity.gotGroupsError(error.getMessage());
     }
 
-    // Get the menu for category
     public void getGroup(GroupsHelper.Callback activity) {
         this.activity = activity;
         RequestQueue queue = Volley.newRequestQueue(context);

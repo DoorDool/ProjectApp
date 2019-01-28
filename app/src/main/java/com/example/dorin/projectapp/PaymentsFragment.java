@@ -81,12 +81,17 @@ public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Ca
         // order list of expenses
         ArrayList<String> expensUsersList = new ArrayList<>();
         ArrayList<Float> expensAmountList = new ArrayList<>();
-        // people who have to pay to others
+        // list with people who have to pay to others
         ArrayList<String> notPayers = new ArrayList<>();
-        ArrayList<String> payers = new ArrayList<>();
+        // list with people who have payd
+        ArrayList<String> payers = new ArrayList<>();  //////// kan weg
+        // list with payments
         ArrayList<Payment> payments = new ArrayList<>();
+        // list with how much have to pay
         ArrayList<Float> much = new ArrayList<>();
+        // list with who have to pay
         ArrayList<String> fromWho = new ArrayList<>();
+        // list with who get money
         ArrayList<String> toWho = new ArrayList<>();
 
         // for all expenses in list
@@ -118,20 +123,47 @@ public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Ca
         for (String payer: notPayers) {
             // iterate over all people who have pay
             for (String expenser: expensUsersList) {
-                // get index of person who have pay
+                // get index of person who get the money
                 int index = expensUsersList.indexOf(expenser);
                 // if person - cash of payer is bigger or same as cash
                 if (expensAmountList.get(index) - cash >= cash ) {
                     expensAmountList.set(index, expensAmountList.get(index) - cash);
+                    // make new payment and add to list
                     Payment payment = new Payment(cash, payer, expensUsersList.get(index));
                     payments.add(payment);
-                    //much.add(cash);
-                    //fromWho.add(payer);
-                    //toWho.add(expensUsersList.get(index));
+                    much.add(cash);
+                    fromWho.add(payer);
+                    toWho.add(expensUsersList.get(index));
                 }
             }
         }
 
+        // iterate over all payers
+        for (float expens: expensAmountList) {
+            // if payer have payed less than cash
+            if (cash - expens > 0) {
+                float pay = cash - expens;
+                // iterate again over all payers
+                for (float ex: expensAmountList) {
+                    // if payer minus pay from other pay is more or equal to cash
+                    if (ex - pay >= cash){
+                        // index for who have pay to
+                        int index = expensAmountList.indexOf(expens);
+                        // index of payer
+                        int payerIndex = expensAmountList.indexOf(ex);
+                        // the payment
+                        Payment payment = new Payment(pay, expensUsersList.get(index), expensUsersList.get(payerIndex));
+                        payments.add(payment);
+                        // set amount for who have to pay to
+                        expensAmountList.set(index, expens - pay);
+                        Log.i("test", "who have to pay to 1234 is  " + (expens - pay));
+                        // set amount for payer
+                        expensAmountList.set(payerIndex, ex + pay);
+                        Log.i("test", "payer 1234 is " + (ex + pay));
+                    }
+                }
+            }
+        }
 
         ListView listView = v.findViewById(R.id.listViewPayments);
         PaymentsAdapter adapter = new PaymentsAdapter(context, payments);
@@ -139,15 +171,5 @@ public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Ca
 
         // TO DO
         // als gebruiker kleiner wordt dan dat bedrag, maar wel een gedeelte, dan aan twee mensen betalen
-        // als van de betalers het bedrag wat overblijft nog te veel is, dan betalers aan elkaar betalen
-
-        // de gebruiker die ingelogd is veranderen in u (dit moet ook nog bij deelnemersfragment)
     }
-
-
-
-
-
-
-
 }

@@ -44,34 +44,39 @@ public class StartActivity extends AppCompatActivity implements UsersHelper.Call
     // method for navigation after clicked on login button
     public void Click_on_login(View v) {
 
+        // get values form editTexts
         EditText username_login = findViewById(R.id.login_username);
         EditText password_login = findViewById(R.id.login_password);
 
         username = username_login.getText().toString();
         String password = password_login.getText().toString();
 
+        // boolean for user exists
+        Boolean exists = false;
+        // iterate over all users
         for (User user : UsersList) {
+            // if user exists
             if (user.getUsername().equals(username)) {
+                exists = true;
+                // if password equals password of user
                 if (user.getPassword().equals(password)) {
                     Intent intent = new Intent(StartActivity.this, MenuActivity.class);
-                    intent.putExtra(username, "username");
                     startActivity(intent);
                     break;
                 } else {
-                    // test voor fout wachtwoord invoer
+                    // error message
                     password_login.setError("Wachtwoord is incorrect");
-                    //String message = "Wachtwoord is incorrect";
-                    //Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
                     break;
                 }
-            } else {
-                username_login.setError("Gebruikersnaam onbekend");
-                //String message = "Gebruikersnaam onbekend";
-                //Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
             }
+        }
+        if (!exists) {
+            // error message
+            username_login.setError("Gebruikersnaam onbekend");
         }
     }
 
+    // method for backpressed
     @Override
     public void onBackPressed() {
         finishAffinity();

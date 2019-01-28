@@ -6,11 +6,12 @@ public class Participator implements Serializable {
 
     String participator;
 
+    // constructor
     public Participator(String participator) {
         this.participator = participator;
     }
 
-    // getters and setters
+    // getter and setter
     public String getParticipator() {
         return participator;
     }

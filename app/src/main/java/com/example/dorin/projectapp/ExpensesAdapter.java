@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class ExpensesAdapter extends ArrayAdapter<Expenses> {
 
+    // constructor
     public ExpensesAdapter(Context context, ArrayList<Expenses> ExpensesList) {
         super(context, 0, ExpensesList);
     }
@@ -26,12 +27,13 @@ public class ExpensesAdapter extends ArrayAdapter<Expenses> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.expenses_item, parent, false);
         }
 
-        // Get and set textViews and imageViews from item
+        // Get expenses and their values
         Expenses expenses = getItem(position);
         TextView textUsername = convertView.findViewById(R.id.textView_username);
         TextView textToWhat = convertView.findViewById(R.id.textView_toWhat);
         TextView textAmount = convertView.findViewById(R.id.textView_amount);
 
+        // If expense is from user, than change name user in "u"
         if (expenses.getUsername().equals(StartActivity.username)) {
             textUsername.setText("u");
         }
@@ -39,6 +41,7 @@ public class ExpensesAdapter extends ArrayAdapter<Expenses> {
             textUsername.setText(expenses.getUsername());
         }
         textToWhat.setText(expenses.getToWhat());
+        // always show money with a point, not a comma
         textAmount.setText("€ " + expenses.getAmount().replaceAll(",", "."));
 
         return convertView;

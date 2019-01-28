@@ -28,7 +28,7 @@ public class GroupsPost implements Response.Listener<String>, Response.ErrorList
 
         @Override
         protected Map<String, String> getParams() {
-
+            // post parameters
             Map<String, String> params = new HashMap<>();
             params.put("groupsname", groupsname);
             params.put("participator", participator);

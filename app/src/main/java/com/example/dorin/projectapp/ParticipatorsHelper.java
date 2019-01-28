@@ -37,14 +37,14 @@ public class ParticipatorsHelper implements Response.Listener<JSONArray>, Respon
         ParticipatorsList = new ArrayList<>();
 
         try {
-            // Get all groups
+            // Get all participators
             for (int i =  0; i < response.length(); i++) {
                 JSONObject object = response.getJSONObject(i);
                 String groupsname = object.getString("groupsname");
                 String participator = object.getString("participator");
 
+                // if participator is in group which is active
                 if (groupsname.equals(StartActivity.groupsname)) {
-                    Log.i("test", "participatorHelper groupsname is zxcv " + StartActivity.groupsname);
                     Participator participatorNew = new Participator(participator);
                     ParticipatorsList.add(participatorNew);
                 }
@@ -65,7 +65,6 @@ public class ParticipatorsHelper implements Response.Listener<JSONArray>, Respon
         activity.gotParticipatorsError(error.getMessage());
     }
 
-    // Get the menu for category
     public void getParticipators(ParticipatorsHelper.Callback activity) {
         this.activity = activity;
         RequestQueue queue = Volley.newRequestQueue(context);

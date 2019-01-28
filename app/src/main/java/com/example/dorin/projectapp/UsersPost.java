@@ -26,7 +26,7 @@ public class UsersPost implements Response.Listener<String>, Response.ErrorListe
 
         @Override
         protected Map<String, String> getParams() {
-
+            // post parameters
             Map<String, String> params = new HashMap<>();
             params.put("username", gebruikersnaam);
             params.put("password", wachtwoord);

@@ -68,34 +68,45 @@ public class MakeGroupActivity extends AppCompatActivity implements UsersHelper.
 
     public void Click_on_plus(View v) {
 
+        // get values from editTexts
         EditText groupsname_input = findViewById(R.id.groupsname_input);
         EditText participators_input = findViewById(R.id.participator_input);
-
         String groupsname = groupsname_input.getText().toString();
         String participator = participators_input.getText().toString();
 
+        // boolean for add participator
         Boolean permission = false;
+        // boolean for exists groupsname already
         Boolean groupDouble = false;
+        // boolean for is participator in group already
         Boolean inGroup = false;
+        // iterate over all groups
         for (Group group: GroupsList) {
+            // if groupsname eguals other groupname
             if (group.getGroupsname().equals(groupsname)) {
                 groupDouble = true;
             }
         }
+        // iterate over all participators in group
         for (Participator part: ParticipatorsList ) {
+            // is participator equals participator who will be add
             if (part.getParticipator().equals(participator)) {
                 inGroup = true;
             }
         }
+        // iterate over all users
         for (User user: UsersList) {
-            // mag niet de gebruiker zijn
+            // participator may not be user
             if (participator.equals(user.getUsername()) && !groupDouble && !inGroup) {
                 permission = true;
+                // make new group
                 GroupsPost post = new GroupsPost(MakeGroupActivity.this);
                 post.postGroup(MakeGroupActivity.this, groupsname, participator);
+                // reset editText
                 participators_input.setText("");
             }
         }
+        // error messages
         if (groupDouble) {
             String message = "Groepsnaam bestaat al";
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
@@ -109,8 +120,6 @@ public class MakeGroupActivity extends AppCompatActivity implements UsersHelper.
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
 
-        // user zelf toevoegen mag ook niet met plus button
-        // error message van maken
 
         // dit was een manier om list met toegevoegde user te laten zien maar dat werk niet
         //ListView listView = findViewById(R.id.listView);
@@ -122,12 +131,15 @@ public class MakeGroupActivity extends AppCompatActivity implements UsersHelper.
 
     public void Click_on_make(View v) {
 
+        // get values from editTexts
         EditText groupsname_input = findViewById(R.id.groupsname_input);
         String groupsname = groupsname_input.getText().toString();
         String participator = username;
-
+        // boolean for check if groupname already exists
         boolean groupDouble = false;
+        // iterate over all groups
         for (Group group: GroupsList) {
+            // if groupsname equals other groupsname
             if (group.getGroupsname().equals(groupsname)) {
                 String message = "Groepsnaam bestaat al";
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
@@ -140,6 +152,11 @@ public class MakeGroupActivity extends AppCompatActivity implements UsersHelper.
 
             Intent intent = new Intent(MakeGroupActivity.this, MenuActivity.class);
             startActivity(intent);
+        }
+        // error for double group
+        else {
+            String message = "Groepsnaam bestaat al";
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -11,7 +11,7 @@ import android.view.View;
 
 public class MenuActivity extends AppCompatActivity {
 
-    public static String groupsname;
+    //public static String groupsname;   /////////////// moet weg kunnen
     BottomNavigationView bottomNav;
 
     @Override
@@ -31,7 +31,7 @@ public class MenuActivity extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                     Fragment selectedFragment = null;
-
+                    // check wich navigation item is click on
                     switch (menuItem.getItemId()) {
                         case R.id.navigation_groups:
                             selectedFragment = new GroupsFragment();
@@ -57,6 +57,7 @@ public class MenuActivity extends AppCompatActivity {
                 }
             };
 
+    // method for move to categorieFragment
     public void moveToCategorieFragment() {
         Fragment fragment = new CategorieFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -64,6 +65,7 @@ public class MenuActivity extends AppCompatActivity {
         bottomNav.setSelectedItemId(R.id.navigation_categories);
     }
 
+    // method for move to expensesFragment
     public void moveToExpensesFragment() {
         Fragment fragment = new ExpensesFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -71,7 +73,7 @@ public class MenuActivity extends AppCompatActivity {
         bottomNav.setSelectedItemId(R.id.navigation_expenses);
     }
 
-
+    // method for backpressed
     @Override
     public void onBackPressed() {
         finishAffinity();

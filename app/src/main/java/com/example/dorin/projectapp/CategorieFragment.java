@@ -35,12 +35,17 @@ public class CategorieFragment extends Fragment implements CategorieHelper.Callb
         CategorieHelper helper = new CategorieHelper(context);
         helper.getCategorie(this);
 
+        // on click for plus button
         FloatingActionButton addCategorieButton = v.findViewById(R.id.add_button);
         addCategorieButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                // get the value of the editText
                 String categorieName = input_categorieName.getText().toString();
+                // make new object for categrie
                 CategoriePost post = new CategoriePost(context);
+                // post categorie in online database
                 post.postCategorie(getContext(), StartActivity.groupsname, categorieName);
+                // reset editText
                 input_categorieName.setText("");
             }
         });

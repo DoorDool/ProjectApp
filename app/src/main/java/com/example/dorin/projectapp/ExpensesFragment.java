@@ -28,6 +28,7 @@ public class ExpensesFragment extends Fragment implements ExpensesHelper.Callbac
         v = inflater.inflate(R.layout.fragment_expenses, container, false);
         context = getContext();
 
+        // method for plus button
         FloatingActionButton addGroupButton = v.findViewById(R.id.add_expenses_button);
         addGroupButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

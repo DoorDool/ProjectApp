@@ -7,11 +7,12 @@ public class Group implements Serializable {
 
     String groupsname;
 
+    // constructor
     public Group(String groupsname) {
         this.groupsname = groupsname;
     }
 
-    // getters and setters
+    // getter and setter
     public String getGroupsname() {
         return groupsname;
     }

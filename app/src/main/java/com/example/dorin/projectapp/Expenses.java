@@ -10,6 +10,7 @@ public class Expenses implements Serializable {
     String toWhat;
     String amount;
 
+    // constructor
     public Expenses(String username, String groupsname, String categorieName, String toWhat, String amount) {
         this.username = username;
         this.groupsname = groupsname;

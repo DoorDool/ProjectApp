@@ -33,24 +33,34 @@ public class ParticipatorsFragment extends Fragment implements ParticipatorsHelp
         UsersHelper users = new UsersHelper(context);
         users.getUser(this);
 
+        // method for adding a participator
         FloatingActionButton addParticipatorButton = v.findViewById(R.id.addParticipatorButton);
         addParticipatorButton.setOnClickListener(new View.OnClickListener() {
             //gebruikersnaam mag niet de gebruiker zijn
             // gebruikersnaam mag niet al in de groep zitten
             public void onClick(View view) {
+                // get name of participator
                 EditText participatorText = v.findViewById(R.id.textParticipator);
                 String participator = participatorText.getText().toString();
+                // if editTexts is not empty
                 if (!participator.equals("")) {
+                    // boolean for participator exists
                     Boolean permission = false;
+                    // boolean for participator already in group
                     Boolean inGroup = false;
+                    // iterate over all participators
                     for (Participator part: ParticipatorsList) {
+                        // if participator equals another participator in group
                         if (participator.equals(part.getParticipator())) {
                             inGroup = true;
                         }
                     }
+                    // iterate over all users
                     for (User user: UsersList) {
+                        // if participater exists and participator is not already in group
                         if (participator.equals(user.getUsername()) && !inGroup) {
                             permission = true;
+                            // post participator in group
                             GroupsPost post = new GroupsPost(context);
                             post.postGroup(context, StartActivity.groupsname, participator);
                             participatorText.setText("");
@@ -60,7 +70,7 @@ public class ParticipatorsFragment extends Fragment implements ParticipatorsHelp
 
                         }
                     }
-
+                    // error messages
                     if (!permission) {
                         String message = "Gebruikersnaam bestaat niet";
                         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();

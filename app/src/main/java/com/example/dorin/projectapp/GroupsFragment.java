@@ -22,7 +22,7 @@ public class GroupsFragment extends Fragment implements GroupsHelper.Callback {
     ListView groups;
     View v;
     Context context;
-    //String groupsname;
+    /////////////////////////////////////////////////// testen voor weghalen
     public static String groupsname;
 
     @Override
@@ -31,6 +31,7 @@ public class GroupsFragment extends Fragment implements GroupsHelper.Callback {
         v = inflater.inflate(R.layout.fragment_groups, container, false);
         context = getContext();
 
+        // method for click on plus button
         FloatingActionButton addGroupButton = v.findViewById(R.id.add_group_button);
         addGroupButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -42,7 +43,6 @@ public class GroupsFragment extends Fragment implements GroupsHelper.Callback {
         GroupsHelper helper = new GroupsHelper(context);
         helper.getGroup(this);
 
-        Log.i("test", "get here 1234");
         groups = v.findViewById(R.id.listview_groups);
         groups.setOnItemClickListener(new listClickListener());
 

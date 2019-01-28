@@ -30,7 +30,7 @@ public class ExpensesPost implements Response.Listener<String>, Response.ErrorLi
 
         @Override
         protected Map<String, String> getParams() {
-
+            // post parameters
             Map<String, String> params = new HashMap<>();
             params.put("username", username);
             params.put("groupsname", groupsname);

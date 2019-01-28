@@ -35,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity implements UsersHelper.C
 
     public void Click_on_register (View v) {
 
+        // get values of editTexts
         EditText username_input = findViewById(R.id.gebruikersnaam_edit);
         EditText password_input = findViewById(R.id.wachtwoord_edit);
         EditText password2_input = findViewById(R.id.wachtwoord2_edit);
@@ -48,25 +49,30 @@ public class RegisterActivity extends AppCompatActivity implements UsersHelper.C
         // TO DO
         // hash maken van wachtwoord
 
-        // als beide wachtwoorden hetzelfde zijn en gebruikersnaam nog niet bestaat
+        // boolean for user not exist already
         Boolean permission = true;
+        // is both passwords are the same
         if (password.equals(password2)) {
+            // iterate over all users
             for (User user: UsersList) {
+                // if user is already in database
                 if (user.getUsername().equals(username)) {
                     permission = false;
+                    // error message
                     String message = "Gebruikersnaam bestaat al";
                     Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
                 }
             }
+            // if user not already exists
             if (permission) {
+                // post user
                 UsersPost post = new UsersPost(RegisterActivity.this);
                 post.postUsers(RegisterActivity.this, username, password, number);
                 Intent intent = new Intent(RegisterActivity.this, MenuActivity.class);
-                intent.putExtra("username", username);
-                StartActivity.username = username;
                 startActivity(intent);
             }
         }
+        // error message
         else {
             String message = "Wachtwoorden komen niet overeen";
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();

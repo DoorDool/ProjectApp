@@ -7,6 +7,7 @@ public class Categorie implements Serializable {
     String groupsname;
     String categorieName;
 
+    // constructor
     public Categorie(String groupsname, String categorieName) {
         this.groupsname = groupsname;
         this.categorieName = categorieName;

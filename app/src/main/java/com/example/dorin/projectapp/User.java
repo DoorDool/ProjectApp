@@ -6,6 +6,7 @@ public class User implements Serializable {
 
     String username, password, number;
 
+    // constructor
     public User(String username, String password, String number) {
         this.username = username;
         this.password = password;

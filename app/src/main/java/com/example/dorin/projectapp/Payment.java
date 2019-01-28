@@ -8,6 +8,7 @@ public class Payment implements Serializable {
     String fromWho;
     String toWho;
 
+    // constructor
     public Payment(Float much, String fromWho, String toWho) {
         this.much = much;
         this.fromWho = fromWho;

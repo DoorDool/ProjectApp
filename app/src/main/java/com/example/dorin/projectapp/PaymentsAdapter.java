@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class PaymentsAdapter extends ArrayAdapter<Payment> {
@@ -26,21 +25,39 @@ public class PaymentsAdapter extends ArrayAdapter<Payment> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.payments_item, parent, false);
         }
 
-        // Get and set textViews and imageViews from item
+        // Get textViews
         Payment payment = getItem(position);
         TextView textFromWho = convertView.findViewById(R.id.textFromWho);
         TextView textMuch = convertView.findViewById(R.id.textMuch);
         TextView textToWho = convertView.findViewById(R.id.textToWho);
 
+        // if name equals user
         if (payment.getFromWho().equals(StartActivity.username)) {
             textFromWho.setText("U");
         }
         else {
             textFromWho.setText(payment.getFromWho());
         }
-        String much = String.format("%.3g%n", payment.getMuch());
+
+        // if money is lss than one
+        String much;
+        if (payment.getMuch() < 1) {
+            // round with two decimals
+            much = String.format("%.2g%n", payment.getMuch());
+        }
+        // if money more/same than one and less than 10
+        else if (payment.getMuch() < 10 && payment.getMuch() >= 1) {
+            // round with three decimals
+            much = String.format("%.3g%n", payment.getMuch());
+        }
+        // if money more or equals ten
+        else {
+            // round with four decimals
+            much = String.format("%.4g%n", payment.getMuch());
+        }
         textMuch.setText("€ " + much);
 
+        // if name equals user
         if (payment.getToWho().equals(StartActivity.username)) {
             textToWho.setText("u");
         }

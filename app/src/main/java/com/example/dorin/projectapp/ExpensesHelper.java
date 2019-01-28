@@ -46,6 +46,7 @@ public class ExpensesHelper implements Response.Listener<JSONArray>, Response.Er
                 String toWhat = object.getString("toWhat");
                 String amount = object.getString("amount");
 
+                // only get expenses which is in categorie and group which are active
                 if ((groupsname.equals(StartActivity.groupsname)) && (categorieName.equals(StartActivity.categoriename))) {
                     Expenses newExpenses = new Expenses(username, groupsname, categorieName, toWhat, amount);
                     ExpensesList.add(newExpenses);
@@ -67,7 +68,6 @@ public class ExpensesHelper implements Response.Listener<JSONArray>, Response.Er
         activity.gotExpensesError(error.getMessage());
     }
 
-    // Get the menu for category
     public void getExpenses(ExpensesHelper.Callback activity) {
         this.activity = activity;
         RequestQueue queue = Volley.newRequestQueue(context);

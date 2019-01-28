@@ -8,29 +8,30 @@ import android.widget.EditText;
 
 public class MakeExpensesActivity extends AppCompatActivity{
 
-    String username;
-    String groupsname;
-    String categorieName;
+    //String username;
+    //String groupsname;
+    //String categorieName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_expenses);
 
-        username = StartActivity.username;
-        groupsname = "zxc";
-        categorieName = "cat";
+        //username = StartActivity.username;
+        //groupsname = "zxc";
+        //categorieName = "cat";
     }
 
     public void Click_on_make(View v) {
 
+        // get values form editTexts
         EditText edit_toWhat = findViewById(R.id.toWhat_input);
         EditText edit_amount = findViewById(R.id.amount_input);
         String toWhat = edit_toWhat.getText().toString();
         String amount = edit_amount.getText().toString();
 
         ExpensesPost post = new ExpensesPost(MakeExpensesActivity.this);
-        post.postExpenses(MakeExpensesActivity.this, username, groupsname, categorieName, toWhat, amount);
+        post.postExpenses(MakeExpensesActivity.this, StartActivity.username, StartActivity.groupsname, StartActivity.categoriename, toWhat, amount);
 
         Intent intent = new Intent(MakeExpensesActivity.this, MenuActivity.class);
         startActivity(intent);

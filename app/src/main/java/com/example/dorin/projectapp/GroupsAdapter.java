@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class GroupsAdapter extends ArrayAdapter<Group> {
 
+    // constructor
     public GroupsAdapter(Context context, ArrayList<Group> GroupsList) {
         super(context, 0, GroupsList);
     }
@@ -25,10 +26,11 @@ public class GroupsAdapter extends ArrayAdapter<Group> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.groups_item, parent, false);
         }
 
-        // Get and set textViews and imageViews from item
+        // set text of switch to groupsname
         Group group = getItem(position);
         Switch name = convertView.findViewById(R.id.switch_groupsname);
         name.setText(group.getGroupsname());
+        // if group is active, then set switch true
         if (StartActivity.groupsname != null && StartActivity.groupsname.equals(group.getGroupsname())) {
             name.setChecked(true);
         }

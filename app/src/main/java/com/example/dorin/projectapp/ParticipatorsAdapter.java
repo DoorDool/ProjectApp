@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class ParticipatorsAdapter extends ArrayAdapter<Participator> {
 
+    // constructor
     public ParticipatorsAdapter(Context context, ArrayList<Participator> ParticipatorsList) {
         super(context, 0, ParticipatorsList);
     }
@@ -27,10 +28,10 @@ public class ParticipatorsAdapter extends ArrayAdapter<Participator> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.participators_item, parent, false);
         }
 
+        // get textView
         Participator participator = getItem(position);
-        // Get and set textViews and imageViews from item
         TextView text = convertView.findViewById(R.id.item_partname);
-
+        // if participator is user, then change name to "u"
         if (participator.getParticipator().equals(StartActivity.username)) {
             text.setText("u");
         }

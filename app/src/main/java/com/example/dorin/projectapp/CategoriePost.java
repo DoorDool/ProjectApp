@@ -27,7 +27,7 @@ public class CategoriePost implements Response.Listener<String>, Response.ErrorL
 
         @Override
         protected Map<String, String> getParams() {
-
+            // post parameters
             Map<String, String> params = new HashMap<>();
             params.put("groupsname", groupsname);
             params.put("categorieName", categorieName);

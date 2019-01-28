@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class CategorieAdapter extends ArrayAdapter<Categorie> {
 
+    // constructor
     public CategorieAdapter(Context context, ArrayList<Categorie> CategorieList) {
         super(context, 0, CategorieList);
     }
@@ -25,10 +26,12 @@ public class CategorieAdapter extends ArrayAdapter<Categorie> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.categorie_item, parent, false);
         }
 
-        // Get and set textViews and imageViews from item
+        // Get categorie
         Categorie categorie = getItem(position);
         Switch name = convertView.findViewById(R.id.switch_categorieName);
+        // set textview of switch
         name.setText(categorie.getCategorieName());
+        // if a categorie is active then set switch true
         if (StartActivity.categoriename != null && StartActivity.categoriename.equals(categorie.getCategorieName())) {
             name.setChecked(true);
         }
