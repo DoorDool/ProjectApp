@@ -1,7 +1,6 @@
 package com.example.dorin.projectapp;
 
 import android.content.Context;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;

@@ -1,7 +1,6 @@
 package com.example.dorin.projectapp;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -42,8 +41,7 @@ public class UsersHelper implements Response.Listener<JSONArray>, Response.Error
                 JSONObject object = response.getJSONObject(i);
                 String username = object.getString("username");
                 String password = object.getString("password");
-                String number = object.getString("number");
-                User user = new User(username, password, number);
+                User user = new User(username, password);
                 UsersList.add(user);
             }
             activity.gotUsers(UsersList);
@@ -56,7 +54,6 @@ public class UsersHelper implements Response.Listener<JSONArray>, Response.Error
             Toast.makeText(context, warningMessage, Toast.LENGTH_LONG).show();
         }
 
-        //Log.i("users", "abcd na json" + UsersList);
     }
 
     @Override

@@ -16,7 +16,7 @@ public class UsersPost implements Response.Listener<String>, Response.ErrorListe
 
     Context context;
     Callback callback_activity;
-    String gebruikersnaam, wachtwoord, rekeningnummer;
+    String username, password;
 
     public class PostRequest extends StringRequest {
 
@@ -28,9 +28,8 @@ public class UsersPost implements Response.Listener<String>, Response.ErrorListe
         protected Map<String, String> getParams() {
             // post parameters
             Map<String, String> params = new HashMap<>();
-            params.put("username", gebruikersnaam);
-            params.put("password", wachtwoord);
-            params.put("number", rekeningnummer);
+            params.put("username", username);
+            params.put("password", password);
             return params;
         }
     }
@@ -44,11 +43,10 @@ public class UsersPost implements Response.Listener<String>, Response.ErrorListe
         this.context = context;
     }
 
-    public void postUsers(Context aContext, String users_gebruikersnaam, String users_wachtwoord, String users_rekeningnummer){
+    public void postUsers(Context aContext, String users_gebruikersnaam, String users_wachtwoord){
         this.context = aContext;
-        gebruikersnaam = users_gebruikersnaam;
-        wachtwoord = users_wachtwoord;
-        rekeningnummer = users_rekeningnummer;
+        username = users_gebruikersnaam;
+        password = users_wachtwoord;
         String json_url = "https://ide50-doordool.legacy.cs50.io:8080/users";
         RequestQueue queue = Volley.newRequestQueue(context);
 

@@ -39,12 +39,10 @@ public class RegisterActivity extends AppCompatActivity implements UsersHelper.C
         EditText username_input = findViewById(R.id.gebruikersnaam_edit);
         EditText password_input = findViewById(R.id.wachtwoord_edit);
         EditText password2_input = findViewById(R.id.wachtwoord2_edit);
-        EditText number_input = findViewById(R.id.rekeningnummer_edit);
 
         String username = username_input.getText().toString();
         String password = password_input.getText().toString();
         String password2 = password2_input.getText().toString();
-        String number = number_input.getText().toString();
 
         // TO DO
         // hash maken van wachtwoord
@@ -67,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity implements UsersHelper.C
             if (permission) {
                 // post user
                 UsersPost post = new UsersPost(RegisterActivity.this);
-                post.postUsers(RegisterActivity.this, username, password, number);
+                post.postUsers(RegisterActivity.this, username, password);
                 Intent intent = new Intent(RegisterActivity.this, MenuActivity.class);
                 startActivity(intent);
             }

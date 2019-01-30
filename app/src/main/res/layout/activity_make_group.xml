@@ -19,7 +19,7 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:hint="Groepsnaam"
-            android:inputType="textPersonName" />
+            android:inputType="textCapSentences|textPersonName" />
 
         <TextView
             android:id="@+id/textView5"
@@ -42,7 +42,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Gebruikersnaam"
-                android:inputType="textPersonName" />
+                android:inputType="textCapSentences|textPersonName" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/floatingActionButton"

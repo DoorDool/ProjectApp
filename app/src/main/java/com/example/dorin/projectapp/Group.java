@@ -1,7 +1,6 @@
 package com.example.dorin.projectapp;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Group implements Serializable {
 

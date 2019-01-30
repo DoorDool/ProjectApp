@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Gebruikersnaam"
-        android:inputType="textPersonName" />
+        android:inputType="textCapSentences|textPersonName" />
 
     <EditText
         android:id="@+id/wachtwoord_edit"
@@ -37,14 +37,6 @@
         android:ems="10"
         android:hint="Wachtwoord (herhaal)"
         android:inputType="textPassword" />
-
-    <EditText
-        android:id="@+id/rekeningnummer_edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Rekeningnummer"
-        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/button2"

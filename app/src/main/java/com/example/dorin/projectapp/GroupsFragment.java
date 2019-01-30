@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -55,6 +57,11 @@ public class GroupsFragment extends Fragment implements GroupsHelper.Callback {
         this.GroupsList = GroupsList;
         GroupsAdapter adapter = new GroupsAdapter(context, GroupsList);
         groups.setAdapter(adapter);
+
+        if (GroupsList.size() == 0) {
+            TextView text = v.findViewById(R.id.noText);
+            text.setText("er zijn geen groepen");
+        }
     }
 
 

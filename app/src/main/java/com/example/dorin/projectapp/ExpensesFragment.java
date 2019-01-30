@@ -9,9 +9,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -34,6 +33,7 @@ public class ExpensesFragment extends Fragment implements ExpensesHelper.Callbac
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MakeExpensesActivity.class);
                 startActivity(intent);
+
             }
         });
 
@@ -49,6 +49,20 @@ public class ExpensesFragment extends Fragment implements ExpensesHelper.Callbac
         ListView expenses = v.findViewById(R.id.listView_expenses);
         ExpensesAdapter adapter = new ExpensesAdapter(context, ExpensesList);
         expenses.setAdapter(adapter);
+
+        // if no group is selected or no categorie or expenses error message
+        if (StartActivity.groupsname == null) {
+            TextView text = v.findViewById(R.id.noText);
+            text.setText("geen groep geselecteerd");
+        }
+        else if (StartActivity.categoriename == null) {
+            TextView text = v.findViewById(R.id.noText);
+            text.setText("geen categorie geselecteerd");
+        }
+        else if (ExpensesList.size() == 0) {
+            TextView text = v.findViewById(R.id.noText);
+            text.setText("er zijn geen uitgaven");
+        }
     }
 
     @Override

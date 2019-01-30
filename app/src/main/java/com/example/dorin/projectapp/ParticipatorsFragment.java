@@ -1,17 +1,16 @@
 package com.example.dorin.projectapp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -48,6 +47,13 @@ public class ParticipatorsFragment extends Fragment implements ParticipatorsHelp
                     Boolean permission = false;
                     // boolean for participator already in group
                     Boolean inGroup = false;
+                    // boolean empty
+                    Boolean empty = false;
+
+                    if (participator.equals("")) {
+                        participatorText.setError("Vul een gebruikersnaam in");
+                        empty = true;
+                    }
                     // iterate over all participators
                     for (Participator part: ParticipatorsList) {
                         // if participator equals another participator in group
@@ -58,26 +64,20 @@ public class ParticipatorsFragment extends Fragment implements ParticipatorsHelp
                     // iterate over all users
                     for (User user: UsersList) {
                         // if participater exists and participator is not already in group
-                        if (participator.equals(user.getUsername()) && !inGroup) {
+                        if (participator.equals(user.getUsername()) && !inGroup && !empty) {
                             permission = true;
                             // post participator in group
                             GroupsPost post = new GroupsPost(context);
                             post.postGroup(context, StartActivity.groupsname, participator);
                             participatorText.setText("");
-                            //ListView participators = v.findViewById(R.id.list_participators);
-                            //ParticipatorsAdapter adapter = new ParticipatorsAdapter(context, ParticipatorsList);
-                            //participators.setAdapter(adapter);
-
                         }
                     }
                     // error messages
                     if (!permission) {
-                        String message = "Gebruikersnaam bestaat niet";
-                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                        participatorText.setError("Gebruikersnaam bestaat niet");
                     }
                     else if (inGroup) {
-                        String message = "Deelnemer zit al in groep";
-                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                        participatorText.setError("Deelnemer zit al in groep");
                     }
                 }
             }
@@ -100,8 +100,27 @@ public class ParticipatorsFragment extends Fragment implements ParticipatorsHelp
     public void gotParticipators(ArrayList<Participator> ParticipatorsList) {
         this.ParticipatorsList = ParticipatorsList;
         ListView participators = v.findViewById(R.id.list_participators);
+        Participator save = null;
+        // iterate over all participators
+        for (Participator part: ParticipatorsList) {
+            // if participator is user
+            if (part.getParticipator().equals(StartActivity.username)) {
+                // save this participator (user)
+                save = part;
+            }
+        }
+        // delete from list and add to end of list
+        ParticipatorsList.remove(save);
+        ParticipatorsList.add(save);
+        // set adapter on ParticipatorsList
         ParticipatorsAdapter adapter = new ParticipatorsAdapter(context, ParticipatorsList);
         participators.setAdapter(adapter);
+
+        // if now group is selected error message
+        if (StartActivity.groupsname == null) {
+            TextView text = v.findViewById(R.id.noText);
+            text.setText("geen groep geselecteerd");
+        }
     }
 
     @Override

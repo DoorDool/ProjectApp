@@ -47,10 +47,26 @@
         android:textColor="@android:color/black"
         android:textSize="18sp" />
 
-    <ListView
-        android:id="@+id/list_categories"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true"/>
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/noText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
+
+        <ListView
+            android:id="@+id/list_categories"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true" >
+
+        </ListView>
+    </RelativeLayout>
 
 </LinearLayout>

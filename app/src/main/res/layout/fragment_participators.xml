@@ -53,10 +53,24 @@
         android:textColor="@android:color/black"
         android:textSize="18sp" />
 
-    <ListView
-        android:id="@+id/list_participators"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </ListView>
+        <TextView
+            android:id="@+id/noText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
+
+        <ListView
+            android:id="@+id/list_participators"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+    </RelativeLayout>
+
 </LinearLayout>

@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -42,11 +42,29 @@ public class CategorieFragment extends Fragment implements CategorieHelper.Callb
                 // get the value of the editText
                 String categorieName = input_categorieName.getText().toString();
                 // make new object for categrie
-                CategoriePost post = new CategoriePost(context);
-                // post categorie in online database
-                post.postCategorie(getContext(), StartActivity.groupsname, categorieName);
-                // reset editText
-                input_categorieName.setText("");
+                boolean same = false;
+                for (Categorie categorie: CategorieList) {
+                    if (categorie.categorieName.equals(categorieName)) {
+                        same = true;
+                    }
+                }
+                if (StartActivity.groupsname == null) {
+                    input_categorieName.setError("Er is geen groep geselecteerd");
+                }
+                else if (categorieName.equals("")) {
+                    input_categorieName.setError("Geen naam ingevoerd");
+                }
+                else if (same) {
+                    input_categorieName.setError("Deze naam bestaat al");
+                }
+                else {
+                    CategoriePost post = new CategoriePost(context);
+                    // post categorie in online database
+                    post.postCategorie(getContext(), StartActivity.groupsname, categorieName);
+                    // reset editText
+                    input_categorieName.setText("");
+                }
+
             }
         });
         categories = v.findViewById(R.id.list_categories);
@@ -59,6 +77,16 @@ public class CategorieFragment extends Fragment implements CategorieHelper.Callb
         this.CategorieList = CategorieList;
         CategorieAdapter adapter = new CategorieAdapter(context, CategorieList);
         categories.setAdapter(adapter);
+
+        if (StartActivity.groupsname == null) {
+            TextView text = v.findViewById(R.id.noText);
+            text.setText("geen groep geselecteerd");
+        }
+        else if (CategorieList.size() == 0) {
+            TextView text = v.findViewById(R.id.noText);
+            text.setText("er zijn geen categoriën");
+        }
+
     }
 
     @Override

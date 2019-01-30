@@ -2,13 +2,9 @@ package com.example.dorin.projectapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Telephony;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -80,12 +76,26 @@ public class MakeGroupActivity extends AppCompatActivity implements UsersHelper.
         Boolean groupDouble = false;
         // boolean for is participator in group already
         Boolean inGroup = false;
+        // boolean for empty name
+        Boolean emptyName = false;
+        // boolean for empty groupsname
+        Boolean emptyGroupsname = false;
         // iterate over all groups
         for (Group group: GroupsList) {
             // if groupsname eguals other groupname
             if (group.getGroupsname().equals(groupsname)) {
                 groupDouble = true;
             }
+        }
+        // if user fill not a participator in editText
+        if (participator.equals("")) {
+            emptyName = true;
+            participators_input.setError("Geen naam ingevuld");
+        }
+        // if user fill not a groupsname in editText
+        if (groupsname.equals("")) {
+            emptyGroupsname = true;
+            groupsname_input.setError("Geen naam ingevuld");
         }
         // iterate over all participators in group
         for (Participator part: ParticipatorsList ) {
@@ -97,7 +107,7 @@ public class MakeGroupActivity extends AppCompatActivity implements UsersHelper.
         // iterate over all users
         for (User user: UsersList) {
             // participator may not be user
-            if (participator.equals(user.getUsername()) && !groupDouble && !inGroup) {
+            if (participator.equals(user.getUsername()) && !groupDouble && !inGroup && !emptyGroupsname && !emptyName) {
                 permission = true;
                 // make new group
                 GroupsPost post = new GroupsPost(MakeGroupActivity.this);
@@ -106,26 +116,17 @@ public class MakeGroupActivity extends AppCompatActivity implements UsersHelper.
                 participators_input.setText("");
             }
         }
+
         // error messages
         if (groupDouble) {
-            String message = "Groepsnaam bestaat al";
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+            groupsname_input.setError("Groepsnaam bestaat al");
         }
         else if (inGroup) {
-            String message = "Deelnemer zit al in groep";
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+            participators_input.setError("Deelnemer zit al in groep");
         }
-        else if (!permission) {
-            String message = "Gebruikersnaam bestaat niet";
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        else if (!permission && !emptyName) {
+            participators_input.setError("Gebruikersnaam bestaat niet");
         }
-
-
-        // dit was een manier om list met toegevoegde user te laten zien maar dat werk niet
-        //ListView listView = findViewById(R.id.listView);
-        //ParticipatorsAdapter adapter = new ParticipatorsAdapter(this, ParticipatorsList);
-        //listView.setAdapter(adapter);
-
     }
 
 
@@ -138,25 +139,26 @@ public class MakeGroupActivity extends AppCompatActivity implements UsersHelper.
         // boolean for check if groupname already exists
         boolean groupDouble = false;
         // iterate over all groups
+        Boolean emptyName = false;
+        if (groupsname.equals("")) {
+            emptyName = true;
+            groupsname_input.setError("Geen naam ingevoerd");
+        }
+        // iterate over all groups
         for (Group group: GroupsList) {
             // if groupsname equals other groupsname
             if (group.getGroupsname().equals(groupsname)) {
-                String message = "Groepsnaam bestaat al";
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+                groupsname_input.setError("Groepsnaam bestaat al");
                 groupDouble = true;
             }
         }
-        if (!groupDouble) {
+        // add group with username
+        if (!groupDouble && !emptyName) {
             GroupsPost post2 = new GroupsPost(MakeGroupActivity.this);
             post2.postGroup(MakeGroupActivity.this, groupsname, participator);
 
             Intent intent = new Intent(MakeGroupActivity.this, MenuActivity.class);
             startActivity(intent);
-        }
-        // error for double group
-        else {
-            String message = "Groepsnaam bestaat al";
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
     }
 

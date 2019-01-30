@@ -2,20 +2,15 @@ package com.example.dorin.projectapp;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.provider.Telephony;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import java.security.Key;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Callback, ExpensesHelper.Callback {
 
@@ -34,7 +29,6 @@ public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Ca
         v = inflater.inflate(R.layout.fragment_payments, container, false);
         context = getContext();
 
-        Log.i("test", "1234 nieuwe run ______________________________");
         ParticipatorsHelper helper = new ParticipatorsHelper(context);
         helper.getParticipators(this);
 
@@ -57,7 +51,6 @@ public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Ca
     @Override
     public void gotExpenses(ArrayList<Expenses> ExpensesList) {
         this.ExpensesList = ExpensesList;
-        Log.i("test", "1234 here _________________________________");
         calculate();
     }
 
@@ -66,17 +59,26 @@ public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Ca
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
-
     public void calculate() {
         countParticipators = ParticipatorsList.size();
+
+        if (StartActivity.groupsname == null) {
+            TextView text = v.findViewById(R.id.noText);
+            text.setText("geen groep geselecteerd");
+        }
+        else if (StartActivity.categoriename == null) {
+            TextView text = v.findViewById(R.id.noText);
+            text.setText("geen categorie geselecteerd");
+        }
+        else if (ExpensesList.size() == 0) {
+            TextView text = v.findViewById(R.id.noText);
+            text.setText("er zijn geen uitgaven");
+        }
 
         for (Expenses expenses: ExpensesList) {
             countExpenses = countExpenses + Float.parseFloat(expenses.getAmount().replaceAll(",", "."));
         }
         cash = countExpenses / countParticipators;
-        Log.i("test", "aantal deelnemers 1234 is " + countParticipators);
-        Log.i("test", "totaal bedrag 1234 is " + countExpenses);
-        Log.i("test" , "bedrag per deelnemer 1234 is " + cash);
 
         // order list of expenses
         ArrayList<String> expensUsersList = new ArrayList<>();
@@ -84,7 +86,7 @@ public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Ca
         // list with people who have to pay to others
         ArrayList<String> notPayers = new ArrayList<>();
         // list with people who have payd
-        ArrayList<String> payers = new ArrayList<>();  //////// kan weg
+        //ArrayList<String> payers = new ArrayList<>();  //////// kan weg
         // list with payments
         ArrayList<Payment> payments = new ArrayList<>();
         // list with how much have to pay
@@ -121,6 +123,7 @@ public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Ca
 
         // iterate over all people who have to pay
         for (String payer: notPayers) {
+            Boolean havePayed = false;
             // iterate over all people who have pay
             for (String expenser: expensUsersList) {
                 // get index of person who get the money
@@ -134,42 +137,106 @@ public class PaymentsFragment extends Fragment implements ParticipatorsHelper.Ca
                     much.add(cash);
                     fromWho.add(payer);
                     toWho.add(expensUsersList.get(index));
+                    havePayed = true;
                 }
+            }
+            if (!havePayed) {
+                // maximal cash
+                float limit = 0;
+                do {
+                    // iterate over all people who have pay
+                    for (String expenser: expensUsersList) {
+                        // get index of person who have pay
+                        int index = expensUsersList.indexOf(expenser);
+                        // if money from payer minus cash is more than zero
+                        if (expensAmountList.get(index) - cash > 0) {
+                            // money which not payer has to pay to payer
+                            float pay = expensAmountList.get(index) - cash;
+                            // may not be more than cash
+                            if (limit + pay <= cash) {
+                                expensAmountList.set(index, expensAmountList.get(index) - pay);
+                                // make new payment and add to list
+                                Payment payment = new Payment(pay, payer, expensUsersList.get(index));
+                                payments.add(payment);
+                                much.add(pay);
+                                fromWho.add(payer);
+                                toWho.add(expensUsersList.get(index));
+                                limit = limit + pay;
+                            }
+                            // else pay rest of not payer has to pay until they pay cash
+                            else {
+                                pay = limit - cash;
+                                expensAmountList.set(index, expensAmountList.get(index) - pay);
+                                // make new payment and add to list
+                                Payment payment = new Payment(pay, payer, expensUsersList.get(index));
+                                payments.add(payment);
+                                much.add(pay);
+                                fromWho.add(payer);
+                                toWho.add(expensUsersList.get(index));
+                                limit = limit + pay;
+
+                            }
+                        }
+                    }
+                // do until limit is less than cash minus 0.02 (for round)
+                } while (limit < (cash - 0.02));
             }
         }
 
         // iterate over all payers
         for (float expens: expensAmountList) {
-            // if payer have payed less than cash
-            if (cash - expens > 0) {
-                float pay = cash - expens;
-                // iterate again over all payers
-                for (float ex: expensAmountList) {
-                    // if payer minus pay from other pay is more or equal to cash
-                    if (ex - pay >= cash){
-                        // index for who have pay to
-                        int index = expensAmountList.indexOf(expens);
-                        // index of payer
-                        int payerIndex = expensAmountList.indexOf(ex);
-                        // the payment
-                        Payment payment = new Payment(pay, expensUsersList.get(index), expensUsersList.get(payerIndex));
-                        payments.add(payment);
-                        // set amount for who have to pay to
-                        expensAmountList.set(index, expens - pay);
-                        Log.i("test", "who have to pay to 1234 is  " + (expens - pay));
-                        // set amount for payer
-                        expensAmountList.set(payerIndex, ex + pay);
-                        Log.i("test", "payer 1234 is " + (ex + pay));
+            // get index of payer
+            int index = expensAmountList.indexOf(expens);
+            // if payer have not payed enough
+            if (expens < cash) {
+                // set limit
+                float limit = expens;
+                do {
+                    // iterate again over all payers
+                    for (float ex: expensAmountList) {
+                        // get index of other payer
+                        int indexGet = expensAmountList.indexOf(ex);
+                        // if this payer has payed to much
+                        if (ex - cash > 0) {
+                            // first payer have to pay to them
+                            float pay = ex - cash;
+                            // if that is not more than cash
+                            if (limit + pay <= cash) {
+                                // set all amounts
+                                expensAmountList.set(index, expensAmountList.get(index) + pay);
+                                expensAmountList.set(indexGet, expensAmountList.get(indexGet) - pay);
+                                // set payment and add to list
+                                Payment payment = new Payment (pay, expensUsersList.get(index), expensUsersList.get(indexGet));
+                                payments.add(payment);
+                                much.add(pay);
+                                fromWho.add(expensUsersList.get(index));
+                                toWho.add(expensUsersList.get(indexGet));
+                                // set limit
+                                limit = limit + pay;
+
+                            }
+                            // pay rest that other payer have pay to much
+                            else {
+                                pay = cash - limit;
+                                expensAmountList.set(index, expensAmountList.get(index) + pay);
+                                expensAmountList.set(indexGet, expensAmountList.get(indexGet) - pay);
+                                Payment payment = new Payment (pay, expensUsersList.get(index), expensUsersList.get(indexGet));
+                                payments.add(payment);
+                                much.add(pay);
+                                fromWho.add(expensUsersList.get(index));
+                                toWho.add(expensUsersList.get(indexGet));
+                                limit = limit + pay;
+                            }
+                        }
                     }
-                }
+                // do while first payer have pay enough
+                } while(limit < (cash - 0.02));
             }
         }
-
+        // set adapter for payments
         ListView listView = v.findViewById(R.id.listViewPayments);
         PaymentsAdapter adapter = new PaymentsAdapter(context, payments);
         listView.setAdapter(adapter);
 
-        // TO DO
-        // als gebruiker kleiner wordt dan dat bedrag, maar wel een gedeelte, dan aan twee mensen betalen
     }
 }
