@@ -44,9 +44,6 @@ public class RegisterActivity extends AppCompatActivity implements UsersHelper.C
         String password = password_input.getText().toString();
         String password2 = password2_input.getText().toString();
 
-        // TO DO
-        // hash maken van wachtwoord
-
         // boolean for user not exist already
         Boolean permission = true;
         // is both passwords are the same
@@ -66,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity implements UsersHelper.C
                 // post user
                 UsersPost post = new UsersPost(RegisterActivity.this);
                 post.postUsers(RegisterActivity.this, username, password);
+                StartActivity.username = username;
                 Intent intent = new Intent(RegisterActivity.this, MenuActivity.class);
                 startActivity(intent);
             }
