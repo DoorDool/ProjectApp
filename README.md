@@ -1,5 +1,9 @@
 # ProjectApp
 
+### Probleem met github
+
+Mijn laptop doet github heel sloom. Ik krijg vaak een unicorn als ik iets wil veranderen of toevoegen. De derde keer slaat die het dan op. Vandaar dat sommige dingen iets later op github staan.
+
 ## Het probleem:
 
 Veel vriendengroepen en/of families geven bijvoorbeeld met elkaar een cadeau aan iemand. Maar dan hebben meerdere mensen betaald en dan moet uitgerekend worden wie aan wie terug moet betalen en hoeveel. Dat is behoorlijk lastig om met de hand te doen soms. 
@@ -58,5 +62,3 @@ Database voor betalingen:
 -	Ook moet ik goed uitzoeken hoe ik een database kan maken. 
 - Het overzichtelijk houden van de app
 
-
-#### Bij het committen voor het inleveren ben ik nog vergeten comments weg te halen. Die heb ik later weggehaald
