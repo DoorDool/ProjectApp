@@ -31,7 +31,6 @@ Ik gebruik geen data van internet, wel een eigen database waar alles opgeslagen 
 Database voor gebruiker:
 -	Gebruikersnaam
 -	Wachtwoord
--	Rekeningnummer
 
 Database voor alle groepen:
 -	Deelnemer
@@ -41,7 +40,6 @@ Database voor uitgaven:
 - Groepsnaam
 - Uitgavennaam
 - Uitgavenbedrag
-- Datum
 - Wat
 
 Database voor betalingen:
