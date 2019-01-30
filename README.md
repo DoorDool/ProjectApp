@@ -58,4 +58,5 @@ Database voor betalingen:
 -	Ook moet ik goed uitzoeken hoe ik een database kan maken. 
 - Het overzichtelijk houden van de app
 
-  
+
+#### Bij het committen voor het inleveren ben ik nog vergeten comments weg te halen. Die heb ik later weggehaald
