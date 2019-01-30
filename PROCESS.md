@@ -84,3 +84,8 @@
 
 - Berekening verder gemaakt voor betalers onder mekaar betalen
 - Commentaar aan code toegevoegd
+
+## Dag 16
+
+- Foutmeldingen gemaakt
+- Berekenen afgemaakt
