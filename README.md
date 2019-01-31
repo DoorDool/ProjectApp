@@ -44,10 +44,11 @@ Database voor uitgaven:
 - Groepsnaam
 - Uitgavennaam
 - Uitgavenbedrag
-- Wat
+- Bedrag
 
 Database voor betalingen:
 - Groepsnaam
+- Categorienaam
 - Betaler
 - Ontvanger
 - Bedrag
@@ -61,4 +62,8 @@ Database voor betalingen:
 -	Het moeilijkst is denk het uitrekenen van wie aan wie hoeveel moet betalen. Het algoritme daarvoor. Maar ik denk als ik een voorbeeld met de hand probeer dat ik er dan een structuur in vind. 
 -	Ook moet ik goed uitzoeken hoe ik een database kan maken. 
 - Het overzichtelijk houden van de app
+
+## Twee bestanden
+
+Twee bestanden uit github startscherm en voorbeeldbetalingen krijg ik niet weg. Ik kan ze wel in het doc mapje plaatsen. Maar ik krijg ze niet verwijderd uit de grote map. Dan krijg ik een foutmelding.
 
