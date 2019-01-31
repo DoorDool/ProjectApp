@@ -3,6 +3,9 @@
 ## Beschrijving:
 Een app voor vriendegroepen met categoriën waarbij je uitgaven kan invoeren en vervolgens wordt uitgereken welk persoon aan wie moet betalen en hoeveel.
 
+<img src="https://github.com/DoorDool/ProjectApp/blob/master/Startscherm.jpeg" width="250">
+<img src="https://github.com/DoorDool/ProjectApp/blob/master/Voorbeeld_betalingen.jpeg" width="250">
+
 ## StartActivity.java
 Variabelen: username, groupsname en categoriename. (deze zijn public static String)
 UsersHelpers.Callback met bijbehorende methoden
@@ -153,3 +156,5 @@ Ik zou ook nog een rekeningnummer erbij doen. Maar omdat ik krap in de tijd kwam
 
 ## Ideale wereld
 In de ideale wereld zou ik een scrollbar hebben gemaakt voor een gebruiker toe te voegen. Zodat je bij elke letter die je type suggesties krijg van gebruikers die die letters hebben. Ook zou ik dan de rekeningnummer hebben toegevoegd. En profielfoto’s voor gebruikers en groepen en categoriën.
+
+<img src="https://github.com/DoorDool/ProjectApp/blob/master/doc/Design_schema's_3.png">
