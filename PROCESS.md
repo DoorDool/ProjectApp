@@ -89,3 +89,8 @@
 
 - Foutmeldingen gemaakt
 - Berekenen afgemaakt
+
+## Dag 17
+
+- PROCESS.md maken
+- filmpje maken
